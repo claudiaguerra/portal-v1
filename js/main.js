@@ -276,7 +276,15 @@
     ig.rel = "noopener";
     ig.textContent = "Instagram";
 
+    // Fallback "Copiar número" quando o click-to-chat (wa.me -> api.whatsapp.com) é bloqueado
+    var copy = document.createElement("button");
+    copy.className = "btn btn-outline btn-light-outline";
+    copy.type = "button";
+    copy.setAttribute("data-copy", "+55 34 8428-2416");
+    copy.textContent = "Copiar número";
+
     actions.appendChild(wa);
+    actions.appendChild(copy);
     actions.appendChild(ig);
     card.appendChild(h);
     card.appendChild(p);
@@ -333,5 +341,53 @@
       link.rel = "noopener";
       link.removeAttribute("title");
     }
+  });
+
+  /* ------------------------------------------------------------
+     Copiar número do WhatsApp — fallback quando o click-to-chat
+     (wa.me -> api.whatsapp.com) é bloqueado pelo navegador/rede.
+     Qualquer elemento com [data-copy] copia o valor para a área
+     de transferência (delegação de eventos cobre botões dinâmicos).
+     ------------------------------------------------------------ */
+  function copyToClipboard(text, done) {
+    function legacyCopy() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.left = "0";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) { done(); }
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, legacyCopy);
+    } else {
+      legacyCopy();
+    }
+  }
+
+  function showCopyToast() {
+    var toast = document.getElementById("copy-toast");
+    if (!toast) return;
+    toast.classList.add("is-visible");
+    clearTimeout(showCopyToast._t);
+    showCopyToast._t = setTimeout(function () {
+      toast.classList.remove("is-visible");
+    }, 2200);
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("[data-copy]") : null;
+    if (!btn) return;
+    var text = btn.getAttribute("data-copy") || "";
+    if (text) { copyToClipboard(text, showCopyToast); }
   });
 })();
