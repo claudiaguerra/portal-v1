@@ -1485,11 +1485,18 @@ figure {
     width: 100%;
   }
 
-  /* Hero */
+  /* Hero — o carrossel começa abaixo da barra fixa */
+  .hero-slides {
+    top: var(--header-h);
+    bottom: 0;
+  }
+
   .hero-inner {
     grid-template-columns: 1fr;
     gap: var(--sp-4);
     text-align: center;
+    padding-top: var(--sp-4);
+    padding-bottom: var(--sp-5);
   }
 
   .hero-copy {
@@ -1607,6 +1614,60 @@ figure {
 
   .hero-text {
     font-size: var(--fs-base);
+  }
+
+  /* Alinha o conteúdo ao topo (logo abaixo da barra) e rola internamente
+     quando ele for maior que a tela — nada fica escondido sob a barra. */
+  .hero-slide {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .hero-photo-frame {
+    width: min(260px, 66vw);
+  }
+}
+
+/* Celular deitado (paisagem): compacta a Hero para caber sem cortes e
+   permite navegar girando o aparelho. */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+  .hero-slide {
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .hero-inner {
+    gap: var(--sp-3);
+    padding-top: var(--sp-3);
+    padding-bottom: var(--sp-4);
+  }
+
+  .hero-title {
+    font-size: 26px;
+    margin-bottom: var(--sp-2);
+  }
+
+  .hero-text {
+    font-size: var(--fs-base);
+    margin-bottom: var(--sp-1);
+  }
+
+  .hero-sign {
+    font-size: 22px;
+    margin-bottom: var(--sp-2);
+  }
+
+  .hero-media {
+    padding: 0;
+  }
+
+  .hero-ring {
+    display: none;
+  }
+
+  .hero-photo-frame {
+    width: min(150px, 30vw);
+    border-width: 4px;
   }
 }
 
