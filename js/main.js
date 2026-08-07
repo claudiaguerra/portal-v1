@@ -264,7 +264,7 @@
     // Botão real disponível: WhatsApp da equipe
     var wa = document.createElement("a");
     wa.className = "btn btn-whatsapp";
-    wa.href = "https://wa.me/5534988011008?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar.";
+    wa.href = "https://wa.me/553484282416?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar.";
     wa.target = "_blank";
     wa.rel = "noopener";
     wa.textContent = "Falar com a equipe";
