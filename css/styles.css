@@ -277,7 +277,9 @@ figure {
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: var(--sp-2); /* espaçamento harmônico entre logotipo e wordmark */
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .brand-logo {
@@ -287,6 +289,48 @@ figure {
   background: #fff;
   border-radius: 10px;
   box-shadow: var(--shadow-sm);
+}
+
+/* Wordmark textual: "Portal" (pequeno) sobre "Cláudia / Guerra" (grande, 2 linhas),
+   empilhados ao lado do logotipo conforme a referência. Usa a tipografia e as
+   cores do design system (--font-heading e --header-ink, que alternam ao rolar). */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.brand-kicker {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--accent); /* amarelo da paleta oficial (#E9C43D) */
+  margin-bottom: 3px;
+}
+
+.brand-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  --brand-name-fs: 19px;
+  font-size: var(--brand-name-fs);
+  line-height: 1.12;
+  letter-spacing: -0.2px;
+  color: var(--header-ink);
+}
+
+.brand-line {
+  display: block;
+}
+
+/* "Guerra" (6 letras) recebe fonte maior que "Cláudia" (7 letras) para as duas
+   linhas ficarem com a MESMA largura — fator 1.1061× medido na Montserrat 800. */
+.brand-line:last-child {
+  font-size: calc(var(--brand-name-fs) * 1.1061);
 }
 
 .nav-list {
@@ -464,25 +508,6 @@ figure {
   max-width: 620px;
 }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  margin-bottom: var(--sp-3);
-  font-family: var(--font-accent);
-  font-size: 26px;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.hero-eyebrow::after {
-  content: "";
-  width: 48px;
-  height: 2px;
-  background: rgba(233, 196, 61, 0.7);
-  border-radius: 2px;
-}
-
 .hero-title {
   font-size: clamp(30px, 4.4vw, 52px);
   font-weight: 800;
@@ -495,7 +520,11 @@ figure {
   color: var(--accent);
   font-family: var(--font-accent);
   font-weight: 700;
-  font-size: 1.08em;
+  /* Palavras em destaque maiores (mais evidência) sem reflow do restante:
+     o line-height compensado mantém a caixa de linha em 1.2em (a do h1/h2).
+     line-height = 1.2 (linha do título) ÷ 1.3 (escala da fonte). */
+  font-size: 1.3em;
+  line-height: 0.92;
 }
 
 .hero-text {
@@ -562,7 +591,6 @@ figure {
 }
 
 /* Entrada do conteúdo ativo */
-.hero-slide.is-active .hero-eyebrow,
 .hero-slide.is-active .hero-title,
 .hero-slide.is-active .hero-text,
 .hero-slide.is-active .hero-sign,
@@ -887,16 +915,32 @@ figure {
   border-radius: 50%;
   background: var(--bg);
   border: 3px solid var(--primary-light);
+  transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
-.timeline-item p {
+/* Cada marco da trajetória é o próprio link: a frase inteira destaca no hover */
+.timeline-item .timeline-link {
+  display: block;
   margin: 0;
+  padding: 10px var(--sp-2);
+  margin-left: calc(-1 * var(--sp-2));
+  border-radius: 10px;
   font-size: var(--fs-base);
   color: var(--text);
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-.timeline-item .link-inline {
-  margin-left: 6px;
+.timeline-item .timeline-link:hover,
+.timeline-item .timeline-link:focus-visible {
+  color: var(--primary);
+  background: rgba(106, 27, 154, 0.07);
+}
+
+.timeline-item:hover .timeline-dot,
+.timeline-item:focus-within .timeline-dot {
+  border-color: var(--accent);
+  transform: scale(1.18);
 }
 
 /* ---------- 9. Minas que Cuida ---------- */
@@ -1228,13 +1272,25 @@ figure {
   padding-bottom: var(--sp-5);
 }
 
+/* Linha com logo + wordmark no rodapé */
+.footer-brand-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-3);
+}
+
 .footer-logo {
   height: 52px;
   width: auto;
   padding: 6px 12px;
   background: #fff;
   border-radius: 10px;
-  margin-bottom: var(--sp-3);
+  margin-bottom: 0;
+}
+
+.footer-brand-row .brand-name {
+  color: #fff;
 }
 
 .footer-phrase {
@@ -1440,14 +1496,6 @@ figure {
     margin-inline: auto;
   }
 
-  .hero-eyebrow {
-    justify-content: center;
-  }
-
-  .hero-eyebrow::after {
-    display: none;
-  }
-
   .hero-actions {
     justify-content: center;
   }
@@ -1534,8 +1582,23 @@ figure {
     width: 100%;
   }
 
+  .brand {
+    gap: 10px;
+  }
+
   .brand-logo {
     height: 38px;
+  }
+
+  .brand-kicker {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    margin-bottom: 2px;
+  }
+
+  .brand-name {
+    --brand-name-fs: 15px;
+    line-height: 1.15;
   }
 
   .hero-title {
@@ -1548,6 +1611,14 @@ figure {
 }
 
 @media (max-width: 400px) {
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-name {
+    --brand-name-fs: 14px;
+  }
+
   .social-band {
     grid-template-columns: 1fr;
   }

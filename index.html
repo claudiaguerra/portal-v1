@@ -7,16 +7,23 @@
   <meta name="description" content="Portal oficial de Cláudia Guerra: trajetória, ações, Plano Participativo Minas que Cuida, conteúdos e participação. Quem mete a colher não assiste aos problemas de longe.">
   <meta name="author" content="Portal Cláudia Guerra">
   <meta name="theme-color" content="#6A1B9A">
+  <meta name="application-name" content="Portal Cláudia Guerra">
 
   <!-- Compartilhamento social -->
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Portal Cláudia Guerra">
   <meta property="og:title" content="Portal Cláudia Guerra — Quem mete a colher transforma vidas">
   <meta property="og:description" content="Trajetória, ações e participação na construção de uma Minas que Cuida. Quem mete a colher não assiste aos problemas de longe.">
   <meta property="og:image" content="imagens/logo_shadow.png">
   <meta name="twitter:card" content="summary_large_image">
 
-  <link rel="icon" type="image/png" href="imagens/logo_shadow.png">
+  <!-- Favicon: SVG vetorial (navegadores modernos) + PNGs de fallback + ícone iOS + manifest PWA -->
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
 
   <!-- Tipografia oficial: Montserrat (títulos), Open Sans (texto), Caveat (destaques) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +43,14 @@
     <div class="container header-inner">
       <a href="#inicio" class="brand" aria-label="Portal Cláudia Guerra — voltar ao início">
         <img class="brand-logo" src="imagens/logo_shadow.png" alt="Logo Portal Cláudia Guerra" width="1024" height="779">
+        <!-- Wordmark textual ao lado do logotipo (disposição da referência: Portal + Cláudia/Guerra empilhados) -->
+        <span class="brand-text" aria-hidden="true">
+          <span class="brand-kicker">Portal</span>
+          <span class="brand-name">
+            <span class="brand-line">Cláudia</span>
+            <span class="brand-line">Guerra</span>
+          </span>
+        </span>
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
@@ -73,9 +88,8 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="hero-eyebrow">01 · Quem Sou</p>
-              <h1 class="hero-title">Quem mete a colher <span class="accent-word">não assiste</span> aos problemas de longe.</h1>
-              <p class="hero-text">Conheça a trajetória de Cláudia Guerra, uma mulher de luta que transforma experiência, escuta e compromisso em ação.</p>
+              <h1 class="hero-title">Quem mete a colher <span class="accent-word">não assiste</span> aos problemas de longe</h1>
+              <p class="hero-text">Quem não assiste, age de perto. Conheça a trajetória de Cláudia Guerra, uma mulher de luta que transforma experiência, escuta e compromisso em ação.</p>
               <p class="hero-sign">Mulher de luta, que mete a colher, faz a diferença e transforma vidas.</p>
               <div class="hero-actions">
                 <a class="btn btn-accent" href="#quem-sou">Conheça minha história completa</a>
@@ -98,9 +112,8 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="hero-eyebrow">02 · Ações</p>
-              <h2 class="hero-title">Eu <span class="accent-word">meto a colher</span> para transformar vidas.</h2>
-              <p class="hero-text">Conheça as ações, iniciativas e compromissos construídos para enfrentar desafios reais das mulheres, famílias e comunidades mineiras.</p>
+              <h2 class="hero-title">Eu <span class="accent-word">meto a colher</span> para transformar vidas</h2>
+              <p class="hero-text">Eu meto a colher em ações, iniciativas e compromissos construídos para enfrentar desafios reais das mulheres, famílias e comunidades mineiras.</p>
               <p class="hero-sign">Quem mete a colher transforma cuidado em ação.</p>
               <div class="hero-actions">
                 <a class="btn btn-accent" href="#acoes">Conheça todas as ações</a>
@@ -123,9 +136,8 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="hero-eyebrow">03 · Minas que Cuida</p>
-              <h2 class="hero-title">Quem mete a colher ajuda a construir uma <span class="accent-word">Minas que cuida</span>.</h2>
-              <p class="hero-text">Participe da construção do Plano Participativo Minas que Cuida e ajude a transformar demandas em propostas.</p>
+              <h2 class="hero-title">Quem mete a colher ajuda a construir uma <span class="accent-word">Minas que cuida</span></h2>
+              <p class="hero-text">Uma Minas que cuida começa com a sua participação. Ajude a transformar demandas em propostas no Plano Participativo Minas que Cuida.</p>
               <p class="hero-sign">Meta a colher na construção de Minas.</p>
               <div class="hero-actions">
                 <a class="btn btn-accent" href="#minas-que-cuida">Conheça Minas que Cuida</a>
@@ -148,9 +160,8 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="hero-eyebrow">04 · Infos</p>
-              <h2 class="hero-title">Quem mete a colher <span class="accent-word">escuta, dialoga</span> e constrói soluções.</h2>
-              <p class="hero-text">Acompanhe vídeos, notícias, encontros, conteúdos e informações sobre a atuação de Cláudia Guerra.</p>
+              <h2 class="hero-title"><span class="accent-word">Quem mete a colher</span> escuta, dialoga e constrói soluções</h2>
+              <p class="hero-text">Quem mete a colher acompanha, informa-se e participa. Veja vídeos, notícias, encontros e conteúdos sobre a atuação de Cláudia Guerra.</p>
               <p class="hero-sign">Escuta que vira ação.</p>
               <div class="hero-actions">
                 <a class="btn btn-accent" href="#infos">Veja informações</a>
@@ -173,9 +184,8 @@
           </div>
           <div class="container hero-inner">
             <div class="hero-copy">
-              <p class="hero-eyebrow">05 · Participe</p>
-              <h2 class="hero-title">Meta a colher e participe da construção de <span class="accent-word">soluções para Minas</span>.</h2>
-              <p class="hero-text">Sua participação ajuda a construir propostas, fortalecer ideias e transformar a realidade das mineiras e dos mineiros.</p>
+              <h2 class="hero-title">Meta a colher e participe da construção de <span class="accent-word">soluções para Minas</span></h2>
+              <p class="hero-text">Soluções para Minas nascem da sua participação. Ajude a construir propostas, fortalecer ideias e transformar a realidade das mineiras e dos mineiros.</p>
               <p class="hero-sign">Quem participa mete a colher.</p>
               <div class="hero-actions">
                 <a class="btn btn-accent" href="#participe">Quero participar</a>
@@ -221,21 +231,21 @@
 
           <div class="quemsou-content">
             <ul class="timeline reveal">
-              <!-- ATUALIZAR: links de "Biografia Completa" apontam para as páginas internas (Overlay Pages) quando forem publicadas -->
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Origem, infância e vida em Uberlândia. <a class="link-inline" href="#" title="Biografia completa (em breve)">Biografia completa →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Família, valores e história de vida. <a class="link-inline" href="#" title="Biografia completa (em breve)">Biografia completa →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Formação acadêmica: professora universitária e Doutora em História. <a class="link-inline" href="#" title="Biografia completa (em breve)">Biografia completa →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Ativismo pelos direitos das mulheres e cultura da paz nas famílias. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Participação na criação da SOS Mulher e Família. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Criação e implantação da Casa Abrigo Travessia. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Participação na criação do Programa de Abordagem Multidisciplinar em Violência Familiar (PAM/PPVD). <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres e do Núcleo de Estudos de Gênero da UFU. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Gestão pública na Divisão dos Direitos das Mulheres. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Professora, palestrante e consultora. <a class="link-inline" href="#infos">Infos →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Vereadora de Uberlândia (2021–2024). <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Primeira Procuradora da Mulher da Câmara Municipal. <a class="link-inline" href="#acoes">Ações →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Atuação em mandatos, conselhos, voluntariado e movimentos sociais. <a class="link-inline" href="#acoes">Ações →</a> · <a class="link-inline" href="#infos">Infos →</a></p></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><p>Pré-candidata a Deputada Estadual por Minas Gerais. <a class="link-inline" href="#" title="Biografia completa (em breve)">Biografia completa →</a></p></li>
+              <!-- Cada marco é o próprio link: aponta para as páginas internas (Overlay Pages) ou seções quando forem publicadas -->
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Origem, infância e vida em Uberlândia.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Família, valores e história de vida.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Formação acadêmica: professora universitária e Doutora em História.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Ativismo pelos direitos das mulheres e cultura da paz nas famílias.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Participação na criação da SOS Mulher e Família.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Criação e implantação da Casa Abrigo Travessia.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Participação na criação do Programa de Abordagem Multidisciplinar em Violência Familiar (PAM/PPVD).</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres e do Núcleo de Estudos de Gênero da UFU.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Gestão pública na Divisão dos Direitos das Mulheres.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#infos">Professora, palestrante e consultora.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Vereadora de Uberlândia (2021–2024).</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Primeira Procuradora da Mulher da Câmara Municipal.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Atuação em mandatos, conselhos, voluntariado e movimentos sociais.</a></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Pré-candidata a Deputada Estadual por Minas Gerais.</a></li>
             </ul>
 
             <blockquote class="section-quote reveal">“Quem mete a colher não assiste aos problemas de longe.”</blockquote>
@@ -647,7 +657,17 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img class="footer-logo" src="imagens/logo_shadow.png" alt="Logo Portal Cláudia Guerra" loading="lazy" width="1024" height="779">
+          <div class="footer-brand-row">
+            <img class="footer-logo" src="imagens/logo_shadow.png" alt="Logo Portal Cláudia Guerra" loading="lazy" width="1024" height="779">
+            <!-- Wordmark do rodapé, mesmo padrão do header -->
+            <span class="brand-text" aria-hidden="true">
+              <span class="brand-kicker">Portal</span>
+              <span class="brand-name">
+                <span class="brand-line">Cláudia</span>
+                <span class="brand-line">Guerra</span>
+              </span>
+            </span>
+          </div>
           <p class="footer-phrase">Quem mete a colher não assiste aos problemas de longe.</p>
           <p class="footer-text">Uma plataforma permanente de trajetória, escuta, participação e ação política para a construção de uma Minas que Cuida.</p>
         </div>

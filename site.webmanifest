@@ -1,0 +1,30 @@
+{
+  "name": "Portal Cláudia Guerra",
+  "short_name": "Cláudia Guerra",
+  "description": "Portal oficial de Cláudia Guerra — trajetória, ações, Plano Participativo Minas que Cuida, conteúdos e participação.",
+  "lang": "pt-BR",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#6A1B9A",
+  "theme_color": "#6A1B9A",
+  "icons": [
+    {
+      "src": "favicon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
