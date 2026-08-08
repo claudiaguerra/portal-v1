@@ -1,0 +1,242 @@
+/* ============================================================
+   Portal Cláudia Guerra — Overlays da seção "Quem sou"
+   Estilos escopados com prefixo "qs-".
+   Herdam os tokens visuais do site (variáveis de :root).
+   Não sobrescreve estilos globais nem de outras seções.
+   ============================================================ */
+
+/* ---------- Scroll do fundo bloqueado enquanto aberta ---------- */
+body.qs-scroll-lock {
+  overflow: hidden;
+}
+
+/* ---------- Container da overlay ---------- */
+.qs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200; /* acima de header (1000) e demais elementos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.qs-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.qs-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ---------- Cartão ---------- */
+.qs-overlay-card {
+  position: relative;
+  width: min(960px, 100%);
+  max-height: 88vh;
+  display: grid;
+  grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.qs-overlay.is-open .qs-overlay-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Imagem (desktop: esquerda) — entra antes do texto ---------- */
+.qs-overlay-media {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease-out 0.12s, transform 0.55s ease-out 0.12s;
+}
+
+.qs-overlay.is-open .qs-overlay-media {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-overlay-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(74, 18, 106, 0.28));
+  pointer-events: none;
+}
+
+.qs-overlay-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+/* ---------- Texto (desktop: direita) — entra depois da imagem ---------- */
+.qs-overlay-body {
+  padding: var(--sp-4) var(--sp-5);
+  overflow-y: auto;
+  max-height: 88vh;
+  overscroll-behavior: contain;
+}
+
+.qs-overlay-index {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--secondary);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out 0.24s, transform 0.5s ease-out 0.24s;
+}
+
+.qs-overlay-title {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--primary-dark);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out 0.32s, transform 0.5s ease-out 0.32s;
+}
+
+.qs-paragraph {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease-out 0.4s, transform 0.5s ease-out 0.4s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(2) {
+  transition-delay: 0.48s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(3) {
+  transition-delay: 0.56s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(4) {
+  transition-delay: 0.64s;
+}
+
+.qs-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.qs-overlay.is-open .qs-overlay-index,
+.qs-overlay.is-open .qs-overlay-title,
+.qs-overlay.is-open .qs-paragraph {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Botão fechar ---------- */
+.qs-overlay-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--primary-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.qs-overlay-close:hover {
+  background: #ffffff;
+  color: var(--secondary);
+  transform: rotate(90deg) scale(1.06);
+}
+
+.qs-overlay-close:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Trigger na timeline (substitui o link) ---------- */
+.qs-trigger {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ---------- Mobile: empilhado, imagem em cima, scroll interno ---------- */
+@media (max-width: 767px) {
+  .qs-overlay {
+    padding: var(--sp-2);
+    align-items: flex-end;
+  }
+
+  .qs-overlay-card {
+    grid-template-columns: 1fr;
+    max-height: 92vh;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  .qs-overlay-media {
+    height: 34vh;
+    min-height: 180px;
+  }
+
+  .qs-overlay-body {
+    max-height: none;
+    padding: var(--sp-3);
+  }
+}
+
+/* ---------- prefers-reduced-motion: desliga animações ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .qs-overlay,
+  .qs-overlay-card,
+  .qs-overlay-media,
+  .qs-overlay-index,
+  .qs-overlay-title,
+  .qs-paragraph,
+  .qs-overlay-close {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

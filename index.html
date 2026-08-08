@@ -31,6 +31,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Overlays da seção Quem Sou (escopado, prefixo qs-) -->
+  <link rel="stylesheet" href="css/qs-overlays.css">
 </head>
 <body>
 
@@ -231,21 +233,21 @@
 
           <div class="quemsou-content">
             <ul class="timeline reveal">
-              <!-- Cada marco é o próprio link: aponta para as páginas internas (Overlay Pages) ou seções quando forem publicadas -->
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Origem, infância e vida em Uberlândia.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Família, valores e história de vida.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Formação acadêmica: professora universitária e Doutora em História.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Ativismo pelos direitos das mulheres e cultura da paz nas famílias.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Participação na criação da SOS Mulher e Família.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Criação e implantação da Casa Abrigo Travessia.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Participação na criação do Programa de Abordagem Multidisciplinar em Violência Familiar (PAM/PPVD).</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres e do Núcleo de Estudos de Gênero da UFU.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Gestão pública na Divisão dos Direitos das Mulheres.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#infos">Professora, palestrante e consultora.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Vereadora de Uberlândia (2021–2024).</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Primeira Procuradora da Mulher da Câmara Municipal.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#acoes">Atuação em mandatos, conselhos, voluntariado e movimentos sociais.</a></li>
-              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><a class="timeline-link" href="#" title="Biografia completa (em breve)">Pré-candidata a Deputada Estadual por Minas Gerais.</a></li>
+              <!-- Cada marco abre uma overlay (Overlay Page) com a biografia completa -->
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="1" aria-haspopup="dialog">Origem, infância e vida em Uberlândia.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="2" aria-haspopup="dialog">Família, valores e história de vida.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="3" aria-haspopup="dialog">Formação acadêmica: professora universitária e Doutora em História.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="4" aria-haspopup="dialog">Ativismo pelos direitos das mulheres e cultura da paz nas famílias.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="5" aria-haspopup="dialog">Participação na criação da SOS Mulher e Família.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="6" aria-haspopup="dialog">Criação e implantação da Casa Abrigo Travessia.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="7" aria-haspopup="dialog">Participação na criação do Programa de Abordagem Multidisciplinar em Violência Familiar (PAM/PPVD).</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="8" aria-haspopup="dialog">Criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres e do Núcleo de Estudos de Gênero da UFU.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="9" aria-haspopup="dialog">Gestão pública na Divisão dos Direitos das Mulheres.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="10" aria-haspopup="dialog">Professora, palestrante e consultora.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="11" aria-haspopup="dialog">Vereadora de Uberlândia (2021–2024).</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="12" aria-haspopup="dialog">Primeira Procuradora da Mulher da Câmara Municipal.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="13" aria-haspopup="dialog">Atuação em mandatos, conselhos, voluntariado e movimentos sociais.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="14" aria-haspopup="dialog">Pré-candidata a Deputada Estadual por Minas Gerais.</button></li>
             </ul>
 
             <blockquote class="section-quote reveal">“Quem mete a colher não assiste aos problemas de longe.”</blockquote>
@@ -722,5 +724,7 @@
   <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Número copiado!</div>
 
   <script src="js/main.js"></script>
+  <!-- Overlays da seção Quem Sou -->
+  <script src="js/qs-overlays.js"></script>
 </body>
 </html>
