@@ -366,6 +366,47 @@ body.qs-scroll-lock {
   }
 }
 
+/* ---------- Landscape (celular deitado): mesmo layout do desktop ----------
+   Com o celular na horizontal (tela baixa e larga), a coluna empilhada do
+   modo retrato transformaria a foto numa faixa fina no topo. Esta media
+   query — orientação landscape em telas com pouca altura (celulares
+   deitados; tablets/monitores em landscape ficam acima de 600px de altura
+   e não são atingidos) — restaura o layout do desktop: imagem à esquerda
+   + texto à direita, com o texto rolável e o cartão centralizado
+   preenchendo a altura da tela (100dvh, com fallback em vh).
+   Nenhuma regra aqui vaza para o modo retrato. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .qs-overlay {
+    align-items: center;
+    padding: var(--sp-3);
+  }
+
+  .qs-overlay-card {
+    display: grid;
+    grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+    max-height: calc(92vh - var(--sp-3) - var(--sp-3));
+    max-height: calc(100dvh - var(--sp-3) - var(--sp-3));
+    border-radius: var(--radius-card);
+  }
+
+  .qs-overlay-media {
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .qs-overlay-img {
+    object-position: center top;
+  }
+
+  .qs-overlay-body {
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-4) var(--sp-5);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* ---------- prefers-reduced-motion: desliga animações ---------- */
 @media (prefers-reduced-motion: reduce) {
   .qs-overlay,
