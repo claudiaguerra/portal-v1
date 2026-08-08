@@ -246,12 +246,27 @@
   body.appendChild(textWrap);
   body.appendChild(nav);
 
-  card.appendChild(closeBtn);
   card.appendChild(media);
   card.appendChild(body);
   root.appendChild(backdrop);
   root.appendChild(card);
   document.body.appendChild(root);
+
+  /* No mobile o botão fechar flutua no topo da tela (sobre o backdrop),
+     para não cobrir a foto; no desktop permanece dentro do cartão.
+     O re-posicionamento é feito por matchMedia, mantendo o desktop intacto. */
+  function syncCloseBtnPlacement() {
+    var isMobile = window.matchMedia &&
+      window.matchMedia("(max-width: 767px)").matches;
+    if (isMobile && closeBtn.parentNode !== root) {
+      // Antes do cartão para o foco (Tab) começar no fechar
+      root.insertBefore(closeBtn, card);
+    } else if (!isMobile && closeBtn.parentNode !== card) {
+      card.appendChild(closeBtn);
+    }
+  }
+  syncCloseBtnPlacement();
+  window.addEventListener("resize", syncCloseBtnPlacement);
 
   var lastTrigger = null;
 

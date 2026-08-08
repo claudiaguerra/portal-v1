@@ -97,6 +97,8 @@ body.qs-scroll-lock {
   overflow-y: auto;
   max-height: 88vh;
   overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 
 /* ---------- Título com revelação progressiva (máscara L → R) ---------- */
@@ -197,6 +199,7 @@ body.qs-scroll-lock {
   color: var(--primary-dark);
   cursor: pointer;
   padding: 0;
+  touch-action: manipulation;
   transition: background-color 0.2s ease, color 0.2s ease,
     border-color 0.2s ease, transform 0.2s ease;
 }
@@ -234,6 +237,7 @@ body.qs-scroll-lock {
   color: var(--primary-dark);
   cursor: pointer;
   box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
   transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
@@ -291,31 +295,74 @@ body.qs-scroll-lock {
   margin: 0;
 }
 
-/* ---------- Mobile: empilhado, imagem em cima, scroll interno ---------- */
+/* ---------- Mobile: empilhado, imagem em cima, texto rolável ---------- */
 @media (max-width: 767px) {
   .qs-overlay {
     padding: var(--sp-2);
     align-items: flex-end;
   }
 
+  /* Cartão em coluna: a foto ocupa a parte de cima e o texto
+     rola por toque na parte de baixo (sem texto cortado) */
   .qs-overlay-card {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     max-height: 92vh;
     border-radius: var(--radius-card) var(--radius-card) 0 0;
   }
 
+  /* Foto com proporção fixa e enquadramento superior — a cabeça
+     fica sempre visível (sem efeito "guilhotina") */
   .qs-overlay-media {
-    height: 34vh;
-    min-height: 180px;
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 40vh;
+    min-height: 0;
   }
 
+  .qs-overlay-img {
+    object-position: center top;
+  }
+
+  /* Corpo flexível com rolagem por toque garantida */
   .qs-overlay-body {
+    flex: 1 1 auto;
+    min-height: 0;
     max-height: none;
     padding: var(--sp-3);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
   }
 
   .qs-overlay-title-wrap {
     margin-bottom: var(--sp-3);
+  }
+
+  /* Botão fechar flutuando sobre o backdrop (fora da foto):
+     área de toque de 44px com círculo visual de ~30px */
+  .qs-overlay-close {
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .qs-overlay-close svg {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* No toque não há hover persistente — mantém só o círculo visível */
+  .qs-overlay-close:hover {
+    background: transparent;
+    transform: none;
   }
 }
 
