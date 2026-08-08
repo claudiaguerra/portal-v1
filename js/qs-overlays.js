@@ -160,7 +160,9 @@
   var section = document.getElementById("quem-sou");
   if (!section) return;
 
-  var triggers = Array.prototype.slice.call(section.querySelectorAll(".qs-trigger"));
+  var triggers = Array.prototype.slice.call(
+    section.querySelectorAll(".qs-trigger, .qs-cta-trigger")
+  );
   if (!triggers.length) return;
 
   var prefersReducedMotion = window.matchMedia &&

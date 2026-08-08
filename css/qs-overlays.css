@@ -202,6 +202,13 @@ body.qs-scroll-lock {
   appearance: none;
 }
 
+/* ---------- CTA "Conheça minha história completa" (abre o marco 1) ---------- */
+.qs-cta-trigger {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
 /* ---------- Mobile: empilhado, imagem em cima, scroll interno ---------- */
 @media (max-width: 767px) {
   .qs-overlay {
