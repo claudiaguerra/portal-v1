@@ -10,7 +10,8 @@
   var QS_CONFIG = {
     IMAGES_BASE: "imagens/qs/",
     FALLBACK_IMAGE: "QS00.jpg",
-    CLOSE_DELAY: 340 // ms — alinhado à transição de fechamento do CSS
+    CLOSE_DELAY: 340, // ms — alinhado à transição de fechamento do CSS
+    EXIT_DELAY: 360 // ms — duração da animação de saída (navegação entre marcos)
   };
 
   /* ------------------------------------------------------------
@@ -204,19 +205,46 @@
   var body = document.createElement("div");
   body.className = "qs-overlay-body";
 
-  var indexEl = document.createElement("p");
-  indexEl.className = "qs-overlay-index";
+  // Título envolto por uma "máscara" que o revela da esquerda para a direita
+  var titleWrap = document.createElement("div");
+  titleWrap.className = "qs-overlay-title-wrap";
 
   var titleEl = document.createElement("h2");
   titleEl.className = "qs-overlay-title";
   titleEl.id = "qs-overlay-title";
+  titleWrap.appendChild(titleEl);
 
   var textWrap = document.createElement("div");
   textWrap.className = "qs-overlay-text";
 
-  body.appendChild(indexEl);
-  body.appendChild(titleEl);
+  // Navegação entre overlays (marco anterior / próximo marco)
+  var nav = document.createElement("div");
+  nav.className = "qs-overlay-nav";
+
+  var prevBtn = document.createElement("button");
+  prevBtn.type = "button";
+  prevBtn.className = "qs-nav-btn qs-nav-prev";
+  prevBtn.setAttribute("aria-label", "Marco anterior");
+  prevBtn.innerHTML =
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
+    'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M15 18l-6-6 6-6"/></svg>';
+
+  var nextBtn = document.createElement("button");
+  nextBtn.type = "button";
+  nextBtn.className = "qs-nav-btn qs-nav-next";
+  nextBtn.setAttribute("aria-label", "Próximo marco");
+  nextBtn.innerHTML =
+    '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
+    'stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M9 18l6-6-6-6"/></svg>';
+
+  nav.appendChild(prevBtn);
+  nav.appendChild(nextBtn);
+
+  body.appendChild(titleWrap);
   body.appendChild(textWrap);
+  body.appendChild(nav);
 
   card.appendChild(closeBtn);
   card.appendChild(media);
@@ -230,19 +258,15 @@
   /* ------------------------------------------------------------
      Render + open/close
      ------------------------------------------------------------ */
-  function getMarco(id) {
+  function getMarcoIndex(id) {
     for (var i = 0; i < QS_MARCOS.length; i++) {
-      if (QS_MARCOS[i].id === id) return QS_MARCOS[i];
+      if (QS_MARCOS[i].id === id) return i;
     }
-    return null;
+    return -1;
   }
 
-  function pad(n) {
-    return (n < 10 ? "0" : "") + n;
-  }
-
-  function renderMarco(marco) {
-    indexEl.textContent = pad(marco.id) + " — " + QS_MARCOS.length;
+  function renderMarco(index) {
+    var marco = QS_MARCOS[index];
     titleEl.textContent = marco.title;
     closeBtn.setAttribute("aria-label", "Fechar — " + marco.title);
     img.alt = "Fotografia — " + marco.title;
@@ -264,6 +288,13 @@
       p.textContent = marco.paragraphs[i];
       textWrap.appendChild(p);
     }
+
+    // Limites da navegação: primeira e última overlay
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === QS_MARCOS.length - 1;
+
+    // Cada marco começa do topo do texto
+    body.scrollTop = 0;
   }
 
   function lockScroll() {
@@ -274,23 +305,49 @@
     document.body.classList.remove("qs-scroll-lock");
   }
 
-  function openMarco(id) {
-    var marco = getMarco(id);
-    if (!marco) return;
+  var currentIndex = -1;
 
-    // Uma overlay por vez: fecha qualquer overlay já aberta
-    if (root.classList.contains("is-open")) {
-      root.classList.remove("is-open");
+  function showMarco(index, animate) {
+    if (index < 0 || index >= QS_MARCOS.length) return;
+
+    var alreadyOpen = root.classList.contains("is-open");
+
+    if (animate && alreadyOpen) {
+      // Navegação: animação de saída → troca de conteúdo → entrada
+      root.classList.add("is-exiting");
+      window.setTimeout(function () {
+        currentIndex = index;
+        renderMarco(index);
+        // Força o reflow para reiniciar as transições de entrada
+        void root.offsetWidth;
+        root.classList.remove("is-exiting");
+      }, prefersReducedMotion ? 0 : QS_CONFIG.EXIT_DELAY);
+      return;
     }
 
-    lastTrigger = document.activeElement;
-    renderMarco(marco);
-    lockScroll();
+    if (!alreadyOpen) {
+      lastTrigger = document.activeElement;
+      lockScroll();
+    }
 
-    // Força o reflow para reiniciar as transições de entrada
-    void root.offsetWidth;
-    root.classList.add("is-open");
-    closeBtn.focus();
+    currentIndex = index;
+    renderMarco(index);
+
+    if (!alreadyOpen) {
+      // Força o reflow para reiniciar as transições de entrada
+      void root.offsetWidth;
+      root.classList.add("is-open");
+      closeBtn.focus();
+    }
+  }
+
+  function openMarco(id) {
+    showMarco(getMarcoIndex(id), true);
+  }
+
+  function navigate(delta) {
+    if (!root.classList.contains("is-open")) return;
+    showMarco(currentIndex + delta, true);
   }
 
   function closeOverlay() {
@@ -322,6 +379,14 @@
   // Clique fora do cartão (backdrop)
   backdrop.addEventListener("click", closeOverlay);
 
+  // Navegação entre overlays
+  prevBtn.addEventListener("click", function () {
+    navigate(-1);
+  });
+  nextBtn.addEventListener("click", function () {
+    navigate(1);
+  });
+
   // ESC fecha + focus trap (Tab)
   document.addEventListener("keydown", function (e) {
     if (!root.classList.contains("is-open")) return;
@@ -333,9 +398,13 @@
     }
 
     if (e.key === "Tab") {
-      var focusables = root.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
+      var focusables = Array.prototype.slice.call(
+        root.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter(function (el) {
+        return !el.disabled;
+      });
       if (!focusables.length) return;
       var first = focusables[0];
       var last = focusables[focusables.length - 1];
@@ -349,8 +418,4 @@
     }
   });
 
-  // Reduz movimento para quem prefere menos animação
-  if (prefersReducedMotion) {
-    root.classList.add("qs-reduced");
-  }
 })();

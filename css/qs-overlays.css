@@ -67,7 +67,7 @@ body.qs-scroll-lock {
   overflow: hidden;
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.55s ease-out 0.12s, transform 0.55s ease-out 0.12s;
+  transition: opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s;
 }
 
 .qs-overlay.is-open .qs-overlay-media {
@@ -91,7 +91,7 @@ body.qs-scroll-lock {
   object-fit: cover;
 }
 
-/* ---------- Texto (desktop: direita) — entra depois da imagem ---------- */
+/* ---------- Texto (desktop: direita) ---------- */
 .qs-overlay-body {
   padding: var(--sp-4) var(--sp-5);
   overflow-y: auto;
@@ -99,62 +99,123 @@ body.qs-scroll-lock {
   overscroll-behavior: contain;
 }
 
-.qs-overlay-index {
-  margin: 0 0 var(--sp-2);
-  font-family: var(--font-heading);
-  font-size: var(--fs-small);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--secondary);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease-out 0.24s, transform 0.5s ease-out 0.24s;
+/* ---------- Título com revelação progressiva (máscara L → R) ---------- */
+.qs-overlay-title-wrap {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 var(--sp-4);
+}
+
+/* A máscara (mesma cor do cartão) cobre o título e se desloca
+   da esquerda para a direita ao abrir — revelação progressiva.
+   Na saída, retorna da direita para a esquerda (desfaz o título). */
+.qs-overlay-title-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  transform: translateX(0);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
+  pointer-events: none;
+}
+
+.qs-overlay.is-open .qs-overlay-title-wrap::after {
+  transform: translateX(102%);
 }
 
 .qs-overlay-title {
-  margin: 0 0 var(--sp-3);
+  margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(20px, 2.4vw, 26px);
   font-weight: 700;
   line-height: 1.3;
   color: var(--primary-dark);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease-out 0.32s, transform 0.5s ease-out 0.32s;
 }
 
+/* ---------- Parágrafos — sobem com desaceleração (stagger) ---------- */
 .qs-paragraph {
   margin: 0 0 var(--sp-3);
   font-size: var(--fs-base);
   line-height: 1.75;
   color: var(--text);
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.5s ease-out 0.4s, transform 0.5s ease-out 0.4s;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.34s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.34s;
 }
 
 .qs-overlay-body .qs-paragraph:nth-of-type(2) {
-  transition-delay: 0.48s;
+  transition-delay: 0.42s;
 }
 
 .qs-overlay-body .qs-paragraph:nth-of-type(3) {
-  transition-delay: 0.56s;
+  transition-delay: 0.5s;
 }
 
 .qs-overlay-body .qs-paragraph:nth-of-type(4) {
-  transition-delay: 0.64s;
+  transition-delay: 0.58s;
 }
 
 .qs-paragraph:last-child {
   margin-bottom: 0;
 }
 
-.qs-overlay.is-open .qs-overlay-index,
-.qs-overlay.is-open .qs-overlay-title,
 .qs-overlay.is-open .qs-paragraph {
   opacity: 1;
   transform: none;
+}
+
+/* ---------- Navegação entre overlays (anterior / próximo) ---------- */
+.qs-overlay-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s;
+}
+
+.qs-overlay.is-open .qs-overlay-nav {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--primary);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--primary-dark);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.qs-nav-btn:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.qs-nav-btn:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+.qs-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 /* ---------- Botão fechar ---------- */
@@ -185,6 +246,27 @@ body.qs-scroll-lock {
 .qs-overlay-close:focus-visible {
   outline: 3px solid var(--secondary-light);
   outline-offset: 2px;
+}
+
+/* ---------- Saída (navegação e fechamento) — inverso da entrada ----------
+   Texto desce, título se desfaz da direita para a esquerda, foto esmaece.
+   Regras após as de .is-open para terem precedência na cascata. */
+.qs-overlay.is-exiting .qs-overlay-media {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.32s ease-in, transform 0.32s ease-in;
+}
+
+.qs-overlay.is-exiting .qs-overlay-title-wrap::after {
+  transform: translateX(0);
+  transition: transform 0.36s ease-in;
+}
+
+.qs-overlay.is-exiting .qs-paragraph,
+.qs-overlay.is-exiting .qs-overlay-nav {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
 }
 
 /* ---------- Trigger na timeline (substitui o link) ---------- */
@@ -231,6 +313,10 @@ body.qs-scroll-lock {
     max-height: none;
     padding: var(--sp-3);
   }
+
+  .qs-overlay-title-wrap {
+    margin-bottom: var(--sp-3);
+  }
 }
 
 /* ---------- prefers-reduced-motion: desliga animações ---------- */
@@ -238,12 +324,25 @@ body.qs-scroll-lock {
   .qs-overlay,
   .qs-overlay-card,
   .qs-overlay-media,
-  .qs-overlay-index,
+  .qs-overlay-title-wrap,
   .qs-overlay-title,
   .qs-paragraph,
+  .qs-overlay-nav,
+  .qs-nav-btn,
   .qs-overlay-close {
     transition: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  /* A máscara fica sempre afastada, revelando o título por completo */
+  .qs-overlay-title-wrap::after {
+    transform: translateX(102%) !important;
+    transition: none !important;
+  }
+
+  /* Mantém o estado desabilitado das setas visível */
+  .qs-nav-btn:disabled {
+    opacity: 0.35 !important;
   }
 }
