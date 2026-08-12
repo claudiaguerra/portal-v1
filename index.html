@@ -33,6 +33,8 @@
   <link rel="stylesheet" href="css/styles.css">
   <!-- Overlays da seção Quem Sou (escopado, prefixo qs-) -->
   <link rel="stylesheet" href="css/qs-overlays.css">
+  <!-- Narrativa "Na narrativa de outras bocas" (escopado, prefixo qsn-) -->
+  <link rel="stylesheet" href="css/qs-narrativa.css">
 </head>
 <body>
 
@@ -252,9 +254,17 @@
 
             <blockquote class="section-quote reveal">“Quem mete a colher não assiste aos problemas de longe.”</blockquote>
 
-            <div class="section-ctas reveal">
-              <button class="btn btn-primary qs-cta-trigger" type="button" data-qs-id="1" aria-haspopup="dialog">Conheça minha história completa</button>
-              <a class="btn btn-outline" href="#acoes">Conheça minhas ações</a>
+            <div class="qsn-entry reveal">
+              <figure class="qsn-entry-media">
+                <img class="qsn-entry-img" src="imagens/qs/QS_MINHA_HISTORIA.png" alt="Cláudia Guerra - NA NARRATIVA DE OUTRAS BOCAS" loading="lazy" decoding="async">
+              </figure>
+              <div class="qsn-entry-copy">
+                <p class="qsn-entry-kicker">A trajetória em 10 capítulos</p>
+                <button class="qsn-open-btn" type="button" aria-haspopup="dialog">
+                  <span class="qsn-open-btn-name">Cláudia Guerra -</span>
+                  <span class="qsn-open-btn-title">NA NARRATIVA DE OUTRAS BOCAS</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -726,5 +736,7 @@
   <script src="js/main.js"></script>
   <!-- Overlays da seção Quem Sou -->
   <script src="js/qs-overlays.js"></script>
+  <!-- Narrativa "Na narrativa de outras bocas" -->
+  <script src="js/qs-narrativa.js"></script>
 </body>
 </html>

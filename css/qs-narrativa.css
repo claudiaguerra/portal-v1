@@ -1,0 +1,523 @@
+/* ============================================================
+   Portal Cláudia Guerra — "Na narrativa de outras bocas"
+   Estilos escopados com prefixo "qsn-".
+   Herdam os tokens visuais do site (variáveis de :root).
+   Não sobrescreve estilos globais nem de outras seções.
+   ============================================================ */
+
+/* ---------- Scroll do fundo bloqueado enquanto aberta ---------- */
+body.qsn-scroll-lock {
+  overflow: hidden;
+}
+
+/* ---------- Bloco de entrada na seção "Quem sou" ----------
+   Imagem QS_MINHA_HISTORIA.png + botão de destaque. */
+.qsn-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  gap: var(--sp-4);
+  align-items: center;
+  margin-top: var(--sp-4);
+}
+
+.qsn-entry-media {
+  margin: 0;
+}
+
+.qsn-entry-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-img);
+  box-shadow: var(--shadow-md);
+}
+
+.qsn-entry-copy {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.qsn-entry-kicker {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.qsn-open-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  width: 100%;
+  padding: var(--sp-3) var(--sp-4);
+  border: 0;
+  border-radius: var(--radius-card);
+  background: linear-gradient(120deg, var(--primary-dark), var(--secondary-dark));
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+  will-change: transform;
+}
+
+.qsn-open-btn:hover,
+.qsn-open-btn:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 48px rgba(74, 18, 106, 0.28);
+  filter: brightness(1.06);
+}
+
+.qsn-open-btn:active {
+  transform: translateY(-1px);
+}
+
+.qsn-open-btn:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 3px;
+}
+
+.qsn-open-btn-name {
+  font-family: var(--font-accent);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.qsn-open-btn-title {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 2.1vw, 24px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ---------- Overlay (tela cheia) ---------- */
+.qsn-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1300; /* acima do header e das overlays existentes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.qsn-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.qsn-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ---------- Cartão ---------- */
+.qsn-card {
+  position: relative;
+  width: min(980px, 100%);
+  max-height: 90vh;
+  display: grid;
+  grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(24px) scale(0.985);
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.qsn-overlay.is-open .qsn-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Imagem (esquerda no desktop) ---------- */
+.qsn-media {
+  position: relative;
+  min-height: 280px;
+  overflow: hidden;
+}
+
+.qsn-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(74, 18, 106, 0.24));
+  pointer-events: none;
+}
+
+.qsn-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------- Texto (direita no desktop), rolável ---------- */
+.qsn-body {
+  padding: var(--sp-4) var(--sp-5);
+  overflow-y: auto;
+  max-height: 90vh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.qsn-title {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.6vw, 28px);
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--primary-dark);
+}
+
+.qsn-p {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-base);
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.qsn-p:last-child {
+  margin-bottom: 0;
+}
+
+.qsn-p em {
+  font-style: italic;
+  color: var(--primary);
+}
+
+/* ---------- Navegação: setas nas extremidades + contador ---------- */
+.qsn-nav {
+  position: sticky;
+  bottom: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-2);
+  margin-top: var(--sp-3);
+  padding-top: var(--sp-2);
+  padding-bottom: 2px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), #ffffff 40%);
+}
+
+.qsn-arrow {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--primary);
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--primary-dark);
+  cursor: pointer;
+  padding: 0;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.qsn-arrow:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.qsn-arrow:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+.qsn-arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.qsn-counter {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+/* ---------- Botão fechar ---------- */
+.qsn-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--primary-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.qsn-close:hover {
+  background: #ffffff;
+  color: var(--secondary);
+  transform: rotate(90deg) scale(1.06);
+}
+
+.qsn-close:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Entrada: texto primeiro, imagem em seguida (stagger) ---------- */
+.qsn-card .qsn-title,
+.qsn-card .qsn-p,
+.qsn-card .qsn-nav {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.qsn-card .qsn-img {
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.qsn-card.qsn-enter .qsn-title {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.04s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(1) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.1s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(2) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.18s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(3) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.26s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(4) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.34s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(5) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.42s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(6) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.5s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(7) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.58s;
+}
+
+.qsn-card.qsn-enter .qsn-p:nth-of-type(8) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.66s;
+}
+
+/* Parágrafos além do 8º entram juntos (sem acumular atraso) */
+.qsn-card.qsn-enter .qsn-p:nth-of-type(n + 9) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.7s;
+}
+
+.qsn-card.qsn-enter .qsn-img {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.3s; /* imagem logo após o início do texto */
+}
+
+.qsn-card.qsn-enter .qsn-nav {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.5s;
+}
+
+/* ---------- Saída (troca de slide) — inverso da entrada ---------- */
+.qsn-card.qsn-exiting .qsn-img {
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.24s ease-in, transform 0.24s ease-in;
+}
+
+.qsn-card.qsn-exiting .qsn-title,
+.qsn-card.qsn-exiting .qsn-p,
+.qsn-card.qsn-exiting .qsn-nav {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.2s ease-in, transform 0.2s ease-in;
+}
+
+/* ---------- Mobile: empilhado, imagem em cima, texto rolável ---------- */
+@media (max-width: 767px) {
+  .qsn-entry {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .qsn-entry-media {
+    max-width: 420px;
+  }
+
+  .qsn-overlay {
+    padding: var(--sp-2);
+    align-items: flex-end;
+  }
+
+  .qsn-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 92vh;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  .qsn-media {
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    max-height: 38vh;
+    min-height: 0;
+  }
+
+  .qsn-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-3);
+    padding-bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .qsn-nav {
+    padding-bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Fechar flutua sobre o backdrop (fora da foto):
+     área de toque de 44px com círculo visual de ~30px */
+  .qsn-close {
+    position: fixed;
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .qsn-close svg {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .qsn-close:hover {
+    background: transparent;
+    transform: none;
+  }
+}
+
+/* ---------- Landscape (celular deitado): mesmo layout do desktop ----------
+   Restaura imagem à esquerda + texto à direita, cartão centralizado
+   preenchendo a altura da tela. Nada aqui vaza para o modo retrato. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .qsn-overlay {
+    align-items: center;
+    padding: var(--sp-3);
+  }
+
+  .qsn-card {
+    display: grid;
+    grid-template-columns: minmax(0, 46%) minmax(0, 54%);
+    max-height: calc(92vh - var(--sp-3) - var(--sp-3));
+    max-height: calc(100dvh - var(--sp-3) - var(--sp-3));
+    border-radius: var(--radius-card);
+  }
+
+  .qsn-media {
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .qsn-body {
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-4) var(--sp-5);
+    padding-bottom: calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---------- prefers-reduced-motion: desliga animações ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .qsn-backdrop,
+  .qsn-card,
+  .qsn-img,
+  .qsn-title,
+  .qsn-p,
+  .qsn-nav,
+  .qsn-arrow,
+  .qsn-close {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Mantém o estado desabilitado das setas visível */
+  .qsn-arrow:disabled {
+    opacity: 0.35 !important;
+  }
+}
