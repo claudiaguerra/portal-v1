@@ -1,0 +1,123 @@
+/* ============================================================
+   Portal Cláudia Guerra — Cards da seção "Ações" como tags
+   expansíveis: repouso = ícone + título; hover expande e
+   revela o card completo; toque alterna via classe .is-open.
+   Código escopado em #acoes (prefixo "acoes-"), sem afetar
+   outras seções.
+   ============================================================ */
+
+/* ---------- Grid: 2 colunas fixas (obrigatório) ---------- */
+#acoes .cards-grid {
+  grid-template-columns: repeat(2, 1fr);
+  align-items: start;
+}
+
+/* ---------- Estado de repouso: tag compacta ---------- */
+#acoes .card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp-3);
+  border-radius: 999px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease,
+    border-radius 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#acoes .card-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+#acoes .card-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0;
+}
+
+#acoes .card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+#acoes .card-title {
+  margin-bottom: 0;
+  font-size: var(--fs-base);
+  line-height: 1.35;
+}
+
+/* Lista recolhida: 0fr + fade — anima de forma suave ao expandir */
+#acoes .card-list-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.35s ease;
+}
+
+#acoes .card-list-wrap > .card-list {
+  overflow: hidden;
+  min-height: 0;
+  margin: 0;
+}
+
+/* ---------- Estado expandido (hover / foco teclado / toque) ---------- */
+#acoes .card:hover,
+#acoes .card:focus-within,
+#acoes .card.is-open {
+  border-radius: var(--radius-card);
+  padding: var(--sp-4);
+}
+
+#acoes .card:hover .card-list-wrap,
+#acoes .card:focus-within .card-list-wrap,
+#acoes .card.is-open .card-list-wrap {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+#acoes .card:hover .card-list,
+#acoes .card:focus-within .card-list,
+#acoes .card.is-open .card-list {
+  padding-top: var(--sp-3);
+}
+
+/* ---------- Responsivo (2 colunas mantidas) ---------- */
+@media (max-width: 640px) {
+  #acoes .cards-grid {
+    gap: var(--sp-2);
+  }
+
+  #acoes .card {
+    padding: var(--sp-2);
+  }
+
+  #acoes .card:hover,
+  #acoes .card:focus-within,
+  #acoes .card.is-open {
+    padding: var(--sp-3);
+  }
+
+  #acoes .card-icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  #acoes .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #acoes .card-title {
+    font-size: var(--fs-small);
+  }
+}
+
+/* ---------- Acessibilidade: reduzir movimento ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #acoes .card,
+  #acoes .card-list-wrap {
+    transition: none;
+  }
+}
