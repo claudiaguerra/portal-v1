@@ -242,6 +242,18 @@ figure {
   font-size: var(--fs-small);
 }
 
+.btn-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #fff;
+}
+
+.btn-instagram:hover,
+.btn-instagram:focus-visible {
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  filter: brightness(1.08);
+}
+
 /* ---------- 4. Header ---------- */
 .site-header {
   position: fixed;
@@ -1145,6 +1157,15 @@ figure {
 
 .embed-fallback .btn {
   margin: 4px;
+}
+
+/* Fallback do formulário: apenas os canais de contato em destaque */
+.form-actions-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-3);
 }
 
 /* ---------- 11. Participe ---------- */
