@@ -261,27 +261,28 @@
 
     var actions = document.createElement("div");
 
-    // Botão real disponível: WhatsApp da equipe
+    // Botão real disponível: WhatsApp da equipe (ícone + cor oficial do app)
     var wa = document.createElement("a");
     wa.className = "btn btn-whatsapp";
     wa.href = "https://wa.me/553484282416?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar.";
     wa.target = "_blank";
     wa.rel = "noopener";
-    wa.textContent = "Falar com a equipe";
+    wa.innerHTML = FORM_ICONS.whatsapp + "Falar com a equipe";
+
+    // Fallback "Copiar número" quando o click-to-chat (wa.me -> api.whatsapp.com) é bloqueado
+    // (ícone de telefone + amarelo da paleta oficial)
+    var copy = document.createElement("button");
+    copy.className = "btn btn-accent";
+    copy.type = "button";
+    copy.setAttribute("data-copy", "+55 34 8428-2416");
+    copy.innerHTML = FORM_ICONS.phone + "Copiar número";
 
     var ig = document.createElement("a");
-    ig.className = "btn btn-outline btn-light-outline";
+    ig.className = "btn btn-instagram";
     ig.href = "https://www.instagram.com/claudiaguerraudi";
     ig.target = "_blank";
     ig.rel = "noopener";
-    ig.textContent = "Instagram";
-
-    // Fallback "Copiar número" quando o click-to-chat (wa.me -> api.whatsapp.com) é bloqueado
-    var copy = document.createElement("button");
-    copy.className = "btn btn-outline btn-light-outline";
-    copy.type = "button";
-    copy.setAttribute("data-copy", "+55 34 8428-2416");
-    copy.textContent = "Copiar número";
+    ig.innerHTML = FORM_ICONS.instagram + "Instagram";
 
     actions.appendChild(wa);
     actions.appendChild(copy);
