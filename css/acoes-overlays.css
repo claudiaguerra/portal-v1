@@ -1,0 +1,426 @@
+/* ============================================================
+   Portal Cláudia Guerra — Overlays dos cards da seção "Ações"
+   Estilos escopados com prefixo "acoes-".
+   Segue o padrão visual das overlays de "Quem Sou"
+   (qs-overlays.css), porém sem imagens: coluna única de texto.
+   Contatos clicáveis: botão quadrado com ícone que, no hover,
+   expande para a direita revelando o endereço/@handle/número.
+   ============================================================ */
+
+/* ---------- Scroll do fundo bloqueado enquanto aberta ---------- */
+body.acoes-scroll-lock {
+  overflow: hidden;
+}
+
+/* ---------- Container da overlay ---------- */
+.acoes-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1250; /* acima das overlays de "Quem Sou" (1200) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.acoes-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.acoes-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ---------- Cartão (sem imagem) ---------- */
+.acoes-card {
+  position: relative;
+  width: min(900px, 100%);
+  max-height: 88vh;
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.acoes-overlay.is-open .acoes-card {
+  opacity: 1;
+  transform: none;
+}
+
+.acoes-body {
+  padding: var(--sp-4) var(--sp-5);
+  overflow-y: auto;
+  max-height: 88vh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* ---------- Cabeçalho ---------- */
+.acoes-eyebrow {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-accent);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--secondary);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.18s,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.18s;
+}
+
+.acoes-overlay.is-open .acoes-eyebrow {
+  opacity: 1;
+  transform: none;
+}
+
+.acoes-title {
+  margin: 0 0 var(--sp-4);
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--primary-dark);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.24s,
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.24s;
+}
+
+.acoes-overlay.is-open .acoes-title {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Introdução (grupo 6) e itens ---------- */
+.acoes-intro {
+  margin: 0 0 var(--sp-4);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.acoes-overlay.is-open .acoes-intro {
+  opacity: 1;
+  transform: none;
+}
+
+.acoes-item {
+  margin: 0 0 var(--sp-4);
+  padding: 0 0 var(--sp-3) var(--sp-3);
+  border-left: 3px solid var(--primary-light);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.3s,
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.acoes-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.acoes-overlay.is-open .acoes-item {
+  opacity: 1;
+  transform: none;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(2) {
+  transition-delay: 0.38s;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(3) {
+  transition-delay: 0.46s;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(4) {
+  transition-delay: 0.54s;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(5) {
+  transition-delay: 0.62s;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(6) {
+  transition-delay: 0.7s;
+}
+
+.acoes-overlay.is-open .acoes-item:nth-child(n + 7) {
+  transition-delay: 0.78s;
+}
+
+.acoes-item-title {
+  margin: 0 0 var(--sp-1);
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--primary-dark);
+}
+
+.acoes-item-text {
+  margin: 0;
+  font-size: var(--fs-small);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* ---------- Notas (ex.: Informações de Acesso) ---------- */
+.acoes-note {
+  margin: var(--sp-2) 0 0;
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--radius-btn);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.acoes-note-label {
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.acoes-note-text {
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* ---------- Contatos clicáveis (expansíveis no hover) ---------- */
+.acoes-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-top: var(--sp-2);
+}
+
+/* Repouso: botão quadrado (44px) apenas com o ícone.
+   Hover/foco: expande para a direita (pill) revelando o rótulo. */
+.acoes-contact {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
+  transition: border-radius 0.35s ease, box-shadow 0.25s ease,
+    transform 0.25s ease, filter 0.25s ease;
+}
+
+.acoes-contact-icon {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+
+.acoes-contact-label {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  line-height: 1.3;
+  transition: max-width 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+
+.acoes-contact:hover,
+.acoes-contact:focus-visible {
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+}
+
+.acoes-contact:hover .acoes-contact-label,
+.acoes-contact:focus-visible .acoes-contact-label {
+  max-width: 320px;
+  opacity: 1;
+}
+
+.acoes-contact:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* Cores conforme a função de cada contato */
+.acoes-contact-site {
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+}
+
+.acoes-contact-instagram {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.acoes-contact-whatsapp {
+  background: #25D366;
+}
+
+.acoes-contact-phone {
+  background: var(--accent);
+  color: #212121;
+}
+
+/* ---------- Botão fechar ---------- */
+.acoes-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--primary-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.acoes-close:hover {
+  background: #ffffff;
+  color: var(--secondary);
+  transform: rotate(90deg) scale(1.06);
+}
+
+.acoes-close:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Mobile: cartão como bottom-sheet, fechar flutuante ---------- */
+@media (max-width: 767px) {
+  .acoes-overlay {
+    padding: var(--sp-2);
+    align-items: flex-end;
+  }
+
+  .acoes-card {
+    max-height: 92vh;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  .acoes-body {
+    max-height: none;
+    padding: var(--sp-3);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .acoes-close {
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .acoes-close svg {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .acoes-close:hover {
+    background: transparent;
+    transform: none;
+  }
+}
+
+/* ---------- Touch: sem hover, rótulos sempre visíveis ---------- */
+@media (hover: none), (pointer: coarse) {
+  .acoes-contact {
+    border-radius: 999px;
+  }
+
+  .acoes-contact-label {
+    max-width: 320px;
+    opacity: 1;
+  }
+}
+
+/* ---------- Landscape (celular deitado) ---------- */
+@media (orientation: landscape) and (max-height: 600px) {
+  .acoes-overlay {
+    align-items: center;
+    padding: var(--sp-3);
+  }
+
+  .acoes-card {
+    max-height: calc(92vh - var(--sp-3) - var(--sp-3));
+    max-height: calc(100dvh - var(--sp-3) - var(--sp-3));
+    border-radius: var(--radius-card);
+  }
+
+  .acoes-body {
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-4) var(--sp-5);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---------- prefers-reduced-motion: desliga animações ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .acoes-overlay,
+  .acoes-card,
+  .acoes-eyebrow,
+  .acoes-title,
+  .acoes-intro,
+  .acoes-item,
+  .acoes-contact,
+  .acoes-contact-label,
+  .acoes-close {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Rótulos sempre visíveis (sem hover) */
+  .acoes-contact {
+    border-radius: 999px;
+  }
+
+  .acoes-contact-label {
+    max-width: 320px !important;
+    opacity: 1 !important;
+  }
+}
