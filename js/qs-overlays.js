@@ -383,7 +383,12 @@
       cta.className = "qs-cta-btn";
       cta.href = marco.cta.href;
       cta.textContent = marco.cta.label;
-      cta.addEventListener("click", closeOverlay);
+      cta.addEventListener("click", function () {
+        // Navegação interna: não devolver o foco ao trigger da timeline,
+        // senão o focus() rolaria a página de volta para o fim da seção.
+        lastTrigger = null;
+        closeOverlay();
+      });
       ctaWrap.appendChild(cta);
       textWrap.appendChild(ctaWrap);
     }
