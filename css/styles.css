@@ -1637,11 +1637,32 @@ figure {
     font-size: var(--fs-base);
   }
 
-  /* Alinha o conteúdo ao topo (logo abaixo da barra) e rola internamente
-     quando ele for maior que a tela — nada fica escondido sob a barra. */
+  /* Hero com altura natural no mobile: o conteúdo define a altura da
+     seção e a página rola livremente (sem rolagem interna presa ao
+     slide). Apenas o slide ativo ocupa espaço; os demais ficam ocultos. */
+  .hero {
+    min-height: 0;
+  }
+
+  .hero-slides {
+    position: static;
+  }
+
   .hero-slide {
+    position: relative;
+    inset: auto;
     align-items: flex-start;
-    overflow-y: auto;
+    overflow: visible;
+  }
+
+  .hero-slide:not(.is-active) {
+    display: none;
+  }
+
+  .hero-inner {
+    gap: var(--sp-3);
+    padding-top: var(--sp-4);
+    padding-bottom: var(--sp-5);
   }
 
   .hero-photo-frame {
@@ -1749,7 +1770,7 @@ figure {
   left: 50%;
   bottom: 32px;
   transform: translateX(-50%) translateY(16px);
-  z-index: 1000;
+  z-index: 1400; /* acima de todas as overlays (máx. 1300) */
   max-width: calc(100vw - 32px);
   padding: 12px 22px;
   border-radius: 999px;
