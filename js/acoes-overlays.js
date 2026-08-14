@@ -320,6 +320,7 @@
       // Telefone: a função é apenas copiar o número (toast via [data-copy] do main.js)
       el.title = "Copiar número";
       el.setAttribute("data-copy", copyValue(valor));
+      el.setAttribute("data-copy-message", "Telefone copiado para a Área de Transferência!");
     } else {
       el.title = valor;
       el.href = contactHref(tipo, valor);

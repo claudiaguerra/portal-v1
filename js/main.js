@@ -416,9 +416,13 @@
     }
   }
 
-  function showCopyToast() {
+  /* message opcional: textos específicos por tipo de cópia
+     (ex.: botão de telefone usa "Telefone copiado para a Área de Transferência!").
+     Sem mensagem, mantém o padrão "Número copiado!". */
+  function showCopyToast(message) {
     var toast = document.getElementById("copy-toast");
     if (!toast) return;
+    toast.textContent = message || "Número copiado!";
     toast.classList.add("is-visible");
     clearTimeout(showCopyToast._t);
     showCopyToast._t = setTimeout(function () {
@@ -430,6 +434,10 @@
     var btn = e.target && e.target.closest ? e.target.closest("[data-copy]") : null;
     if (!btn) return;
     var text = btn.getAttribute("data-copy") || "";
-    if (text) { copyToClipboard(text, showCopyToast); }
+    if (!text) return;
+    var message = btn.getAttribute("data-copy-message") || "";
+    copyToClipboard(text, function () {
+      showCopyToast(message);
+    });
   });
 })();

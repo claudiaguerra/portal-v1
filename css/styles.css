@@ -1750,8 +1750,10 @@ figure {
   bottom: 32px;
   transform: translateX(-50%) translateY(16px);
   z-index: 1000;
+  max-width: calc(100vw - 32px);
   padding: 12px 22px;
   border-radius: 999px;
+  text-align: center;
   background: var(--primary);
   color: #fff;
   font-family: var(--font-heading);
