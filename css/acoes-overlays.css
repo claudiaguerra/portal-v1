@@ -230,6 +230,11 @@ body.acoes-scroll-lock {
   cursor: pointer;
   box-shadow: var(--shadow-sm);
   touch-action: manipulation;
+  -webkit-appearance: none;
+  appearance: none;
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
   transition: border-radius 0.35s ease, box-shadow 0.25s ease,
     transform 0.25s ease, filter 0.25s ease, padding-right 0.3s ease;
 }

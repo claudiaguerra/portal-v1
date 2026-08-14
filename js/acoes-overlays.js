@@ -275,6 +275,19 @@
     return valor;
   }
 
+  /* Valor copiado no botão de telefone: formato internacional +55 (DD) número */
+  function copyValue(valor) {
+    var d = digits(valor);
+    var local = d.indexOf("55") === 0 ? d.slice(2) : d;
+    var ddd = local.slice(0, 2);
+    var rest = local.slice(2);
+    var part =
+      rest.length === 8
+        ? rest.slice(0, 4) + "-" + rest.slice(4)
+        : rest.slice(0, 5) + "-" + rest.slice(5);
+    return "+55 " + ddd + " " + part;
+  }
+
   function contactIcon(tipo) {
     if (tipo === "site") {
       return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
@@ -298,14 +311,22 @@
   }
 
   function buildContact(tipo, rotulo, valor) {
-    var a = document.createElement("a");
-    a.className = "acoes-contact acoes-contact-" + tipo;
-    a.href = contactHref(tipo, valor);
-    a.title = valor;
-    a.setAttribute("aria-label", rotulo + " — " + valor);
-    if (contactIsExternal(tipo)) {
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
+    var isPhone = tipo === "telefone";
+    var el = document.createElement(isPhone ? "button" : "a");
+    if (isPhone) el.type = "button";
+    el.className = "acoes-contact acoes-contact-" + tipo;
+    el.setAttribute("aria-label", (isPhone ? "Copiar número — " : rotulo + " — ") + displayLabel(tipo, valor));
+    if (isPhone) {
+      // Telefone: a função é apenas copiar o número (toast via [data-copy] do main.js)
+      el.title = "Copiar número";
+      el.setAttribute("data-copy", copyValue(valor));
+    } else {
+      el.title = valor;
+      el.href = contactHref(tipo, valor);
+      if (contactIsExternal(tipo)) {
+        el.target = "_blank";
+        el.rel = "noopener noreferrer";
+      }
     }
     var icon = document.createElement("span");
     icon.className = "acoes-contact-icon";
@@ -313,9 +334,9 @@
     var label = document.createElement("span");
     label.className = "acoes-contact-label";
     label.textContent = displayLabel(tipo, valor);
-    a.appendChild(icon);
-    a.appendChild(label);
-    return a;
+    el.appendChild(icon);
+    el.appendChild(label);
+    return el;
   }
 
   /* ------------------------------------------------------------
