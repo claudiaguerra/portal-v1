@@ -58,7 +58,7 @@
     },
     {
       id: 5,
-      title: "Participação na criação da SOS Mulher e Família",
+      title: "Participação na criação da ONG SOS Mulheres",
       image: "QS05.jpg",
       paragraphs: [
         "Na década de 1990, Cláudia participou da criação da organização da sociedade civil SOS Mulher e Família, iniciativa pioneira voltada ao acolhimento, orientação e fortalecimento de mulheres em situação de violência.",
@@ -115,7 +115,7 @@
     },
     {
       id: 11,
-      title: "Vereadora de Uberlândia (2021–2024)",
+      title: "Vereadora de Uberlândia",
       image: "QS11.jpg",
       paragraphs: [
         "Eleita vereadora em 2020, Cláudia exerceu mandato entre 2021 e 2024, pautando sua atuação pelo diálogo com a população, pela defesa da educação pública, da democracia, dos direitos das mulheres e da construção coletiva de políticas públicas.",
@@ -145,12 +145,20 @@
     },
     {
       id: 14,
-      title: "Pré-candidata a Deputada Estadual por Minas Gerais",
+      title: "Suplente ao cargo de Deputada Estadual",
       image: "QS14.jpg",
       paragraphs: [
         "Em 2022, Cláudia colocou sua trajetória e experiência à disposição de Minas Gerais como candidata a deputada estadual.",
         "Recebeu quase 16 mil votos distribuídos por mais de 400 municípios mineiros, tornando-se suplente para a legislatura 2023–2026.",
         "A pré-candidatura ao Parlamento Estadual representa a continuidade de uma trajetória construída ao longo de décadas de atuação na educação, na gestão pública, nos movimentos sociais e na formulação de políticas voltadas à promoção dos direitos humanos, da igualdade e da participação cidadã."
+      ]
+    },
+    {
+      id: 15,
+      title: "Candidata a Deputada Estadual de Minas Gerais nas Eleições 2026",
+      image: "QS14.jpg",
+      paragraphs: [
+        "Aqui será inserido as informações sobre a proposta de mandato como deputada estadual."
       ]
     }
   ];
@@ -285,6 +293,17 @@
     titleEl.textContent = marco.title;
     closeBtn.setAttribute("aria-label", "Fechar — " + marco.title);
     img.alt = "Fotografia — " + marco.title;
+
+    // Overlay em branco (temporária): sem foto, sem parágrafos e sem navegação
+    if (marco.blank) {
+      media.style.display = "none";
+      textWrap.innerHTML = "";
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+      body.scrollTop = 0;
+      return;
+    }
+    media.style.display = "";
 
     // Imagem com fallback: se o arquivo não existir, usa QS00.jpg
     var fallbackUsed = false;

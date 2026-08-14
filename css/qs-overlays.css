@@ -273,6 +273,27 @@ body.qs-scroll-lock {
   transition: opacity 0.3s ease-in, transform 0.3s ease-in;
 }
 
+/* ---------- Título da timeline "Marco Temporal" ---------- */
+.qs-marco-title {
+  margin: 0 0 var(--sp-6);
+  text-align: center;
+  font-family: var(--font-accent);
+  font-size: clamp(30px, 3.6vw, 40px);
+  font-weight: 600;
+  color: var(--secondary);
+  line-height: 1.25;
+}
+
+.qs-marco-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: var(--sp-2) auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
 /* ---------- Trigger na timeline (substitui o link) ---------- */
 .qs-trigger {
   width: 100%;
