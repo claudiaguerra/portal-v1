@@ -231,7 +231,7 @@ body.acoes-scroll-lock {
   box-shadow: var(--shadow-sm);
   touch-action: manipulation;
   transition: border-radius 0.35s ease, box-shadow 0.25s ease,
-    transform 0.25s ease, filter 0.25s ease;
+    transform 0.25s ease, filter 0.25s ease, padding-right 0.3s ease;
 }
 
 .acoes-contact-icon {
@@ -261,6 +261,7 @@ body.acoes-scroll-lock {
   box-shadow: var(--shadow-md);
   transform: translateY(-2px);
   filter: brightness(1.06);
+  padding-right: var(--sp-2);
 }
 
 .acoes-contact:hover .acoes-contact-label,
@@ -287,7 +288,7 @@ body.acoes-scroll-lock {
   background: #25D366;
 }
 
-.acoes-contact-phone {
+.acoes-contact-telefone {
   background: var(--accent);
   color: #212121;
 }
@@ -369,6 +370,7 @@ body.acoes-scroll-lock {
 @media (hover: none), (pointer: coarse) {
   .acoes-contact {
     border-radius: 999px;
+    padding-right: var(--sp-2);
   }
 
   .acoes-contact-label {
@@ -417,6 +419,7 @@ body.acoes-scroll-lock {
   /* Rótulos sempre visíveis (sem hover) */
   .acoes-contact {
     border-radius: 999px;
+    padding-right: var(--sp-2);
   }
 
   .acoes-contact-label {

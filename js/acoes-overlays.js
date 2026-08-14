@@ -267,6 +267,14 @@
     return tipo === "site" || tipo === "instagram" || tipo === "whatsapp";
   }
 
+  /* Rótulo visível: para sites, sem o prefixo https:// (ex.: nomedosite.com.br/home) */
+  function displayLabel(tipo, valor) {
+    if (tipo === "site") {
+      return String(valor).replace(/^https?:\/\//i, "").replace(/\/+$/, "");
+    }
+    return valor;
+  }
+
   function contactIcon(tipo) {
     if (tipo === "site") {
       return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" ' +
@@ -304,7 +312,7 @@
     icon.innerHTML = contactIcon(tipo);
     var label = document.createElement("span");
     label.className = "acoes-contact-label";
-    label.textContent = valor;
+    label.textContent = displayLabel(tipo, valor);
     a.appendChild(icon);
     a.appendChild(label);
     return a;
