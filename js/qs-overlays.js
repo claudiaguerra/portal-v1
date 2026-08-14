@@ -156,10 +156,18 @@
     {
       id: 15,
       title: "Candidata a Deputada Estadual de Minas Gerais nas Eleições 2026",
-      image: "QS14.jpg",
+      image: "CG.jpg",
+      slogan: "É A NOSSA VEZ, MINAS!",
       paragraphs: [
-        "Aqui será inserido as informações sobre a proposta de mandato como deputada estadual."
-      ]
+        "Quem me conhece sabe: eu não assisto aos problemas de longe, eu meto a colher! Sou candidata nas Eleições 2026 a Deputada Estadual de Minas Gerais pelo partido REDE SUSTENTABILIDADE – 18. Como professora, historiadora e ativista, quero levar para a Assembleia Legislativa a força de um mandato coletivo, transparente e focado em cuidar de quem mais precisa. Vote 18000 e vamos juntas e juntos construir o futuro de Minas Gerais."
+      ],
+      paragraphLinks: {
+        "REDE SUSTENTABILIDADE – 18": "https://redesustentabilidade.org.br/rede/"
+      },
+      cta: {
+        label: "Conheça nosso Plano Participativo \u201CMinas que Cuida\u201D",
+        href: "#minas-que-cuida"
+      }
     }
   ];
 
@@ -288,6 +296,42 @@
     return -1;
   }
 
+  /* Monta um parágrafo, transformando trechos em links quando definidos */
+  function appendParagraphText(parent, text, links) {
+    if (!links) {
+      parent.textContent = text;
+      return;
+    }
+    var keys = Object.keys(links);
+    var cursor = 0;
+    while (cursor < text.length) {
+      var bestKey = null;
+      var bestIndex = -1;
+      for (var k = 0; k < keys.length; k++) {
+        var idx = text.indexOf(keys[k], cursor);
+        if (idx >= 0 && (bestIndex === -1 || idx < bestIndex)) {
+          bestIndex = idx;
+          bestKey = keys[k];
+        }
+      }
+      if (bestKey === null) {
+        parent.appendChild(document.createTextNode(text.slice(cursor)));
+        break;
+      }
+      if (bestIndex > cursor) {
+        parent.appendChild(document.createTextNode(text.slice(cursor, bestIndex)));
+      }
+      var a = document.createElement("a");
+      a.className = "qs-inline-link";
+      a.href = links[bestKey];
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = bestKey;
+      parent.appendChild(a);
+      cursor = bestIndex + bestKey.length;
+    }
+  }
+
   function renderMarco(index) {
     var marco = QS_MARCOS[index];
     titleEl.textContent = marco.title;
@@ -314,13 +358,34 @@
     };
     img.src = QS_CONFIG.IMAGES_BASE + marco.image;
 
-    // Texto: um <p> para cada parágrafo, sem cortes
+    // Texto: slogan em destaque + um <p> para cada parágrafo, sem cortes
     textWrap.innerHTML = "";
+
+    if (marco.slogan) {
+      var sloganEl = document.createElement("p");
+      sloganEl.className = "qs-slogan";
+      sloganEl.textContent = marco.slogan;
+      textWrap.appendChild(sloganEl);
+    }
+
     for (var i = 0; i < marco.paragraphs.length; i++) {
       var p = document.createElement("p");
       p.className = "qs-paragraph";
-      p.textContent = marco.paragraphs[i];
+      appendParagraphText(p, marco.paragraphs[i], marco.paragraphLinks);
       textWrap.appendChild(p);
+    }
+
+    // Botão de navegação interna — fecha a overlay antes de navegar
+    if (marco.cta) {
+      var ctaWrap = document.createElement("div");
+      ctaWrap.className = "qs-cta-wrap";
+      var cta = document.createElement("a");
+      cta.className = "qs-cta-btn";
+      cta.href = marco.cta.href;
+      cta.textContent = marco.cta.label;
+      cta.addEventListener("click", closeOverlay);
+      ctaWrap.appendChild(cta);
+      textWrap.appendChild(ctaWrap);
     }
 
     // Limites da navegação: primeira e última overlay

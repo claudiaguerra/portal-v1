@@ -170,6 +170,87 @@ body.qs-scroll-lock {
   transform: none;
 }
 
+/* ---------- Slogan em destaque (cards especiais) ---------- */
+.qs-slogan {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-accent);
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--secondary);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+
+.qs-overlay.is-open .qs-slogan {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Link inline dentro do parágrafo ---------- */
+.qs-inline-link {
+  color: var(--secondary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(195, 0, 193, 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.qs-inline-link:hover,
+.qs-inline-link:focus-visible {
+  color: var(--primary);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Botão de navegação interna ---------- */
+.qs-cta-wrap {
+  margin-top: var(--sp-4);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.qs-overlay.is-open .qs-cta-wrap {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+  box-shadow: var(--shadow-md);
+  touch-action: manipulation;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.qs-cta-btn:hover,
+.qs-cta-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  filter: brightness(1.08);
+}
+
+.qs-cta-btn:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
 /* ---------- Navegação entre overlays (anterior / próximo) ---------- */
 .qs-overlay-nav {
   display: flex;
@@ -267,6 +348,8 @@ body.qs-scroll-lock {
 }
 
 .qs-overlay.is-exiting .qs-paragraph,
+.qs-overlay.is-exiting .qs-slogan,
+.qs-overlay.is-exiting .qs-cta-wrap,
 .qs-overlay.is-exiting .qs-overlay-nav {
   opacity: 0;
   transform: translateY(18px);
@@ -436,6 +519,8 @@ body.qs-scroll-lock {
   .qs-overlay-title-wrap,
   .qs-overlay-title,
   .qs-paragraph,
+  .qs-slogan,
+  .qs-cta-wrap,
   .qs-overlay-nav,
   .qs-nav-btn,
   .qs-overlay-close {
