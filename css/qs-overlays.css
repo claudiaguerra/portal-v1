@@ -455,3 +455,25 @@ body.qs-scroll-lock {
     opacity: 0.35 !important;
   }
 }
+
+/* ---------- Anos na timeline (Quem Sou) ---------- */
+#quem-sou .qs-timeline-year {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: calc(0.55em + 7px); /* centro alinhado ao marcador circular */
+  transform: translateY(-50%) rotate(-7deg);
+  font-family: var(--font-accent);
+  font-size: var(--fs-medium);
+  line-height: 1;
+  color: var(--secondary-light);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Mobile: reserva espaço à esquerda para os anos sem desalinhar os 15 itens */
+@media (max-width: 900px) {
+  #quem-sou .timeline {
+    padding-left: 60px;
+  }
+}
