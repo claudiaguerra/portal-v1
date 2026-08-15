@@ -303,21 +303,28 @@ figure {
   box-shadow: var(--shadow-sm);
 }
 
-/* Logo Eleições 2026 no header — chip roxo da paleta entre o nome do portal e
-   o botão Início. O E26FE.png tem fundo transparente com texto branco/amarelo,
-   por isso o chip escuro garante a leitura do conteúdo. Animação permanente
-   sutil (pulso de brilho magenta) com as cores da paleta; desativada em
-   prefers-reduced-motion. A altura fixa também vem inline no <img> para nunca
-   renderizar no tamanho natural (850×567) mesmo se o CSS estiver em cache. */
+/* Selo "Eleições 2026" no header — adesivo fixo (antes e depois do scroll)
+   usando a arte oficial E26FE.png INTEGRALMENTE (sem releitura). O selo é
+   mais alto que o header e fica deslocado para baixo, "vazando" ~14px sobre
+   o conteúdo (efeito adesivo). O fundo navy garante o contraste do conteúdo
+   da arte (texto branco/amarelo) no header roxo do topo e no header branco
+   após o scroll. Tamanhos fixos no container e no <img> (width/height/
+   object-fit) impedem renderização no tamanho natural mesmo com CSS em
+   cache. Animação sutil (pulso de brilho magenta) desativada em
+   prefers-reduced-motion. */
 .eleicoes-logo-link {
+  position: relative;
+  top: 4px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
   margin-right: auto;
-  line-height: 0;
-  border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  padding: 6px 10px;
+  width: 140px;
+  height: 96px; /* mais alto que o header (76px) → transborda ~14px abaixo */
+  border-radius: 12px;
+  background: #162a5c; /* navy do material de campanha */
+  padding: 6px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.3s ease;
   animation: eleicoes-glow 2.6s ease-in-out infinite;
@@ -336,9 +343,10 @@ figure {
 
 .eleicoes-logo {
   display: block;
-  height: 30px;
-  width: auto;
-  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 6px;
 }
 
 @keyframes eleicoes-glow {
@@ -1770,6 +1778,16 @@ figure {
   .brand-name {
     --brand-name-fs: 15px;
     line-height: 1.15;
+  }
+
+  /* Selo Eleições 2026 compacto no mobile — continua "vazando" levemente
+     para fora da barra (efeito adesivo preservado, sem apertar o header) */
+  .eleicoes-logo-link {
+    top: 0;
+    width: 104px;
+    height: 72px; /* header mobile = 64px → vaza ~4px abaixo */
+    padding: 4px;
+    border-radius: 10px;
   }
 
   .hero-title {

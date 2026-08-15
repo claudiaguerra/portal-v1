@@ -61,7 +61,12 @@
       </a>
 
       <a class="eleicoes-logo-link" href="#eleicoes-2026" aria-label="Eleições 2026 — minha proposta de campanha">
-        <img class="eleicoes-logo" src="imagens/logo/E26FE.png" alt="Eleições 2026" style="height: 30px; width: auto;">
+        <!-- Arte oficial E26FE.png usada INTEGRALMENTE (sem releitura). O selo
+             navy fixo garante o contraste do conteúdo (texto branco/amarelo)
+             tanto no header roxo do topo quanto no header branco após o
+             scroll, e transborda da barra como adesivo. Tamanho fixo no <img>
+             impede renderização no tamanho natural mesmo com CSS em cache. -->
+        <img class="eleicoes-logo" src="imagens/logo/E26FE.png" alt="Eleições 2026 — Vote na democracia" width="850" height="567" style="width: 100%; height: 100%; object-fit: contain;">
       </a>
 
       <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
