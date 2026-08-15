@@ -303,6 +303,54 @@ figure {
   box-shadow: var(--shadow-sm);
 }
 
+/* Logo Eleições 2026 no header — chip roxo da paleta entre o nome do portal e
+   o botão Início. O E26FE.png tem fundo transparente com texto branco/amarelo,
+   por isso o chip escuro garante a leitura do conteúdo. Animação permanente
+   sutil (pulso de brilho magenta) com as cores da paleta; desativada em
+   prefers-reduced-motion. A altura fixa também vem inline no <img> para nunca
+   renderizar no tamanho natural (850×567) mesmo se o CSS estiver em cache. */
+.eleicoes-logo-link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: auto;
+  line-height: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  padding: 6px 10px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+  animation: eleicoes-glow 2.6s ease-in-out infinite;
+  will-change: box-shadow;
+}
+
+.eleicoes-logo-link:hover,
+.eleicoes-logo-link:focus-visible {
+  transform: scale(1.05);
+}
+
+.eleicoes-logo-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eleicoes-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  border-radius: 4px;
+}
+
+@keyframes eleicoes-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 112, 253, 0.35), var(--shadow-sm);
+  }
+  50% {
+    box-shadow: 0 0 14px 3px rgba(195, 0, 193, 0.45), var(--shadow-sm);
+  }
+}
+
 /* Wordmark textual: "Portal" (pequeno) sobre "Cláudia / Guerra" (grande, 2 linhas),
    empilhados ao lado do logotipo conforme a referência. Usa a tipografia e as
    cores do design system (--font-heading e --header-ink, que alternam ao rolar). */
@@ -349,12 +397,14 @@ figure {
   list-style: none;
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 4px;
 }
 
 .nav-link {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap; /* impede quebra dos nomes do menu (ex.: Minas que Cuida) */
   min-height: 44px;
   padding: 0 var(--sp-2);
   font-family: var(--font-heading);
@@ -734,6 +784,75 @@ figure {
   margin: var(--sp-3) auto 0;
   border-radius: 4px;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* ============================================================
+   ELEIÇÕES 2026
+============================================================ */
+.eleicoes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr 0.85fr;
+  align-items: stretch;
+  gap: var(--sp-4);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.eleicoes-media {
+  margin: 0;
+  height: clamp(280px, 34vw, 420px);
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: var(--shadow-md);
+}
+
+.eleicoes-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.eleicoes-media-rede {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-4);
+}
+
+.eleicoes-media-rede img {
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.eleicoes-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: clamp(24px, 3.5vw, 44px);
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  box-shadow: var(--shadow-md);
+  color: #fff;
+}
+
+.eleicoes-text {
+  margin: 0;
+  max-width: 36ch;
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.55vw, 21px);
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.eleicoes-vote {
+  color: var(--accent);
+  font-weight: 800;
+  white-space: nowrap;
 }
 
 .section-lede {
@@ -1444,8 +1563,10 @@ figure {
   .hero-arrow-next { right: var(--sp-2); }
 }
 
-@media (max-width: 900px) {
-  /* Menu mobile */
+/* Menu colapsa em hambúrguer em telas menores que o espaço necessário para o
+   menu completo caber ao lado do logo Eleições 2026 — garante que os itens do
+   menu nunca quebrem em duas linhas. */
+@media (max-width: 1100px) {
   .nav-toggle {
     display: flex;
   }
@@ -1504,6 +1625,28 @@ figure {
 
   .nav-cta .btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Seção Eleições 2026 — empilhamento das colunas */
+  .eleicoes-grid {
+    grid-template-columns: 1fr;
+    gap: var(--sp-3);
+  }
+
+  .eleicoes-media {
+    height: 240px;
+  }
+
+  .eleicoes-media-rede {
+    height: auto;
+    padding: var(--sp-5) var(--sp-4);
+  }
+
+  .eleicoes-media-rede img {
+    height: 170px;
+    width: auto;
   }
 
   /* Hero — o carrossel começa abaixo da barra fixa */
@@ -1745,6 +1888,9 @@ figure {
 
 /* ---------- 17. Acessibilidade: movimento reduzido ---------- */
 @media (prefers-reduced-motion: reduce) {
+  .eleicoes-logo-link {
+    animation: none;
+  }
   html {
     scroll-behavior: auto;
   }
