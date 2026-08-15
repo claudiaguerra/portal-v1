@@ -797,8 +797,9 @@ figure {
 /* ============================================================
    ELEIÇÕES 2026
 ============================================================ */
-/* Banda expandida de ponta a ponta (imagem | painel roxo | imagem),
-   com as duas imagens em painéis de MESMA proporção (1fr cada lado). */
+/* Banda expandida de ponta a ponta (imagem | painel roxo | imagem).
+   As duas imagens ficam em QUADRADOS de MESMA medida (referência:
+   CG.jpg é quadrada) — a da direita é encaixada SEM cortar (contain). */
 .eleicoes-grid {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -808,10 +809,12 @@ figure {
 
 .eleicoes-media {
   margin: 0;
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(300px, 36vw, 470px);
+  width: 100%;
+  aspect-ratio: 1 / 1;
   background: #fff;
   padding: var(--sp-3);
 }
@@ -861,27 +864,130 @@ figure {
 }
 
 .eleicoes-vote {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   margin: var(--sp-1) 0 0;
-  display: inline-block;
-  padding: 10px 26px;
+  padding: 10px 22px 10px 14px;
   border-radius: 999px;
-  background: var(--accent);
+  background: linear-gradient(135deg, #F9E27B 0%, var(--accent) 60%, var(--accent-dark) 100%);
   color: #241a02;
+  box-shadow: 0 10px 26px rgba(233, 196, 61, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  animation: eleicoes-badge-pulse 3s ease-in-out infinite;
+}
+
+.eleicoes-vote-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #241a02;
+  color: var(--accent);
+  font-size: 15px;
+}
+
+.eleicoes-vote-label {
   font-family: var(--font-heading);
+  font-size: 12px;
   font-weight: 800;
-  font-size: clamp(17px, 1.5vw, 21px);
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  padding-right: 12px;
+  border-right: 2px solid rgba(36, 26, 2, 0.35);
+}
+
+.eleicoes-vote-number {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+@keyframes eleicoes-badge-pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 26px rgba(233, 196, 61, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+  50% {
+    box-shadow: 0 10px 36px rgba(233, 196, 61, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
 }
 
 .eleicoes-slogan {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   font-family: var(--font-accent);
-  font-size: clamp(30px, 3.2vw, 46px);
+  font-size: clamp(32px, 3.4vw, 50px);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.05;
   color: var(--secondary-light);
+}
+
+.eleicoes-slogan-minas {
+  position: relative;
+  color: var(--accent);
+  text-shadow: 0 0 26px rgba(233, 196, 61, 0.5);
+}
+
+.eleicoes-slogan-minas::after {
+  content: "";
+  position: absolute;
+  left: 2%;
+  right: 2%;
+  bottom: -8px;
+  height: 12px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C 30 3, 55 11, 80 7 S 120 4, 137 6' fill='none' stroke='%23E9C43D' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center / 100% 100%;
+}
+
+/* Bloco "A base da minha candidatura" — abaixo da banda, mesma seção */
+.eleicoes-plataforma {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: var(--sp-6) var(--sp-3) 0;
+  text-align: center;
+}
+
+.eleicoes-plataforma-title {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.8vw, 34px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--primary-dark);
+  line-height: 1.25;
+}
+
+.eleicoes-plataforma-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: var(--sp-2) auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.eleicoes-plataforma-lead {
+  margin: 0 0 var(--sp-3);
+  font-family: var(--font-heading);
+  font-size: clamp(17px, 1.8vw, 20px);
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--primary);
+}
+
+.eleicoes-plataforma-text {
+  margin: 0 auto;
+  max-width: 780px;
+  font-size: var(--fs-base);
+  line-height: 1.85;
+  color: var(--text-muted);
 }
 
 .section-lede {
@@ -1658,18 +1764,20 @@ figure {
 }
 
 @media (max-width: 900px) {
-  /* Seção Eleições 2026 — banda empilhada no mobile (mesma proporção
-     entre as duas imagens preservada) */
+  /* Seção Eleições 2026 — banda empilhada no mobile; as duas imagens
+     continuam em quadrados de MESMA medida */
   .eleicoes-grid {
     grid-template-columns: 1fr;
   }
 
   .eleicoes-media {
-    min-height: 260px;
+    width: min(100%, 320px);
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    padding: var(--sp-4);
   }
 
   .eleicoes-media-rede {
-    min-height: auto;
     padding: var(--sp-5) var(--sp-4);
   }
 
@@ -1677,6 +1785,10 @@ figure {
     height: 170px;
     width: auto;
     object-fit: contain;
+  }
+
+  .eleicoes-plataforma {
+    padding-top: var(--sp-5);
   }
 
   /* Hero — o carrossel começa abaixo da barra fixa */
