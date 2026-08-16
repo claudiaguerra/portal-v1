@@ -85,6 +85,8 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  /* Evita rolagem horizontal acidental (não quebra position: sticky) */
+  overflow-x: clip;
 }
 
 img {
@@ -1895,6 +1897,12 @@ figure {
     width: 100%;
   }
 
+  /* Header compacto no mobile: reduz gaps e controles para brand + selo +
+     hambúrguer caberem em telas estreitas (até 360px) sem estourar */
+  .header-inner {
+    gap: 12px;
+  }
+
   .brand {
     gap: 10px;
   }
@@ -1918,10 +1926,15 @@ figure {
      para fora da barra (efeito adesivo preservado, sem apertar o header) */
   .eleicoes-logo-link {
     top: 0;
-    width: 104px;
-    height: 72px; /* header mobile = 64px → vaza ~4px abaixo */
+    width: 96px;
+    height: 66px; /* header mobile = 64px → vaza ~2px abaixo */
     padding: 4px;
     border-radius: 10px;
+  }
+
+  .nav-toggle {
+    width: 44px;
+    height: 44px;
   }
 
   .hero-title {
@@ -2009,12 +2022,33 @@ figure {
 }
 
 @media (max-width: 400px) {
+  .header-inner {
+    gap: 8px;
+  }
+
   .brand {
     gap: 8px;
   }
 
+  .brand-logo {
+    height: 32px;
+  }
+
   .brand-name {
-    --brand-name-fs: 14px;
+    --brand-name-fs: 13px;
+  }
+
+  /* Selo ainda mais compacto em telas muito estreitas (≤360px) */
+  .eleicoes-logo-link {
+    width: 84px;
+    height: 60px;
+    padding: 3px;
+    border-radius: 8px;
+  }
+
+  .nav-toggle {
+    width: 40px;
+    height: 40px;
   }
 
   .social-band {

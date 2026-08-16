@@ -85,7 +85,8 @@
     });
 
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900) closeNav();
+      // Breakpoint do hambúrguer no CSS é 1100px (ver @media max-width: 1100px)
+      if (window.innerWidth > 1100) closeNav();
     });
   }
 
