@@ -87,6 +87,13 @@
           ]
         },
         {
+          titulo: "ASUS – Associação dos Usuários do SUS",
+          descricao: "Em 2025, Cláudia Guerra assumiu a direção da ASUS, atuando no recebimento de denúncias, apuração, controle social, fiscalizações e ações educativas e preventivas em defesa do SUS.",
+          contatos: [
+            { tipo: "instagram", rotulo: "Instagram", valor: "@asus.udi" }
+          ]
+        },
+        {
           titulo: "Defesa da autonomia feminina e Enfrentamento às violências",
           descricao: "integram as ações práticas da Procuradoria da Mulher e dos conselhos, garantindo o acompanhamento de leis protetivas e o monitoramento das taxas locais de feminicídio.",
           contatos: []
@@ -138,6 +145,27 @@
           descricao: "Projeto de capacitação comunitária no qual Cláudia atua de forma voluntária. Consiste na formação de lideranças femininas populares (com cursos de noções básicas de Direito, Direitos Humanos das Mulheres e funcionamento do Estado). Uma vez formadas, as PLPs atuam de forma descentralizada em seus bairros, orientando e fazendo a triagem de demandas de violência e garantindo o acesso democrático à justiça.",
           contatos: [
             { tipo: "instagram", rotulo: "Instagram de referência", valor: "@plpsuberlandia" }
+          ]
+        },
+        {
+          titulo: "CRESEX – Centro de Referência em Sexualidade",
+          descricao: "Cláudia Guerra é membro honorária do CRESEX desde 2018, participando de eventos, aulas em pós-graduação, editoria de livros e publicações, além de ações educativas e preventivas sobre sexualidade, gênero e direitos humanos.",
+          contatos: [
+            { tipo: "instagram", rotulo: "Instagram", valor: "@grupocresex" }
+          ]
+        },
+        {
+          titulo: "Movimento Mulheres Vivas UDI",
+          descricao: "Cláudia Guerra assumiu a coordenação do Movimento Mulheres Vivas UDI em 2025, atuando na prevenção, acolhimento e articulação de redes de proteção em Uberlândia.",
+          contatos: [
+            { tipo: "instagram", rotulo: "Instagram", valor: "@mulheresvivasudi" }
+          ]
+        },
+        {
+          titulo: "Coletivo 8 de Março UDI",
+          descricao: "Cláudia Guerra é integrante do Coletivo 8 de Março UDI, participando da luta por direitos, igualdade de gênero e justiça social, fortalecendo a presença das mulheres nos espaços de decisão.",
+          contatos: [
+            { tipo: "instagram", rotulo: "Instagram", valor: "@8muberlandia" }
           ]
         },
         {
