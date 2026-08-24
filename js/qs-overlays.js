@@ -38,13 +38,18 @@
     },
     {
       id: 3,
-      title: "Formação acadêmica (Professora universitária e Doutora em História)",
+      title: "Formação acadêmica: Mestrado (USP, 1998), Doutorado (UFU, 2018) e professora universitária",
       image: "QS03.jpg",
       paragraphs: [
-        "Movida pela convicção de que a educação é uma das mais importantes ferramentas de transformação social, Cláudia construiu uma sólida trajetória acadêmica.",
-        "É Doutora em História pela Universidade Federal de Uberlândia (UFU), onde pesquisou a violência nos relacionamentos, tema que dialoga diretamente com sua atuação profissional e social.",
-        "Há mais de vinte e cinco anos atua como professora universitária em cursos de graduação e pós-graduação, ministrando disciplinas como Sociologia, Antropologia, Ciência Política, Filosofia e Relações Étnico-Raciais e Culturais. Ao longo desse percurso, formou milhares de estudantes, sempre articulando conhecimento acadêmico, cidadania e compromisso com os direitos humanos."
-      ]
+        "Minha trajetória acadêmica é a base de toda a minha atuação. Em 1998, concluí o Mestrado em História Econômica pela Universidade de São Paulo (USP) com a dissertação 'Descortinando o poder e a violência nos relacionamentos: Uberlândia-MG (1980-1995)', que investigou as dinâmicas de poder e violência nas relações conjugais na minha cidade natal. Em 2018, obtive o Doutorado em História pela Universidade Federal de Uberlândia (UFU) com a tese 'Jogos de poder e metAMORfoses: representações sociais de violências de gênero, na esfera conjugal, em Uberlândia-MG, 1997 a 2017', que aprofundou a análise sobre as representações sociais da violência de gênero ao longo de duas décadas.",
+        "Além da pesquisa, atuei como professora universitária, ministrando disciplinas como Sociologia, Antropologia, Filosofia e Ciência Política, sempre integrando a produção acadêmica à prática social e ao ativismo. Sou historiadora especializada em violência de gênero pela USP e UFU, fundadora da ONG SOS Mulher e Família de Uberlândia e do Núcleo de Estudos de Gênero da UFU, além de conselheira dos Direitos das Mulheres. Minha trajetória acadêmica é marcada pela busca de compreender as estruturas de poder e violência para transformá-las.",
+        "Dissertação (PDF)",
+        "Tese (Repositório UFU)"
+      ],
+      paragraphLinks: {
+        "Dissertação (PDF)": "https://www.pagu.unicamp.br/pf-pagu/public-files/arquivo/55_corrig.guerra_claudia_costa_termo.pdf",
+        "Tese (Repositório UFU)": "https://repositorio.ufu.br/handle/123456789/"
+      }
     },
     {
       id: 4,
@@ -85,13 +90,16 @@
     },
     {
       id: 8,
-      title: "Criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres e do Núcleo de Estudos de Gênero da UFU",
+      title: "Membro fundadora do NEGUEM/UFU (1992) e atuação no Conselho Municipal dos Direitos das Mulheres",
       image: "QS08.jpg",
       paragraphs: [
-        "Cláudia também participou da criação do Conselho Municipal dos Direitos das Mulheres (CMDM) e do Núcleo de Estudos de Gênero (NEGUEM), da Universidade Federal de Uberlândia.",
-        "Esses espaços contribuíram para ampliar o debate sobre igualdade de gênero, fortalecer pesquisas acadêmicas, incentivar políticas públicas e promover a participação social na defesa dos direitos das mulheres.",
-        "Sua atuação permaneceu presente ao longo dos anos, apoiando o fortalecimento dessas iniciativas e incentivando o diálogo entre universidade, poder público e sociedade civil."
-      ]
+        "Em 1992, fui uma das fundadoras do Núcleo de Estudos de Gênero da Universidade Federal de Uberlândia (NEGUEM/UFU), um espaço pioneiro dedicado à pesquisa, ao ensino e à extensão sobre gênero, sexualidade e direitos das mulheres. Desde então, participo ativamente de estudos, pesquisas, encontros científicos, eventos e ações educativas e preventivas. O NEGUEM é um dos principais centros de referência em gênero no Brasil, e minha atuação como membro fundadora reflete o compromisso com a produção de conhecimento crítico e com a formação de novas gerações de pesquisadoras e ativistas.",
+        "Paralelamente, atuei na criação e fortalecimento do Conselho Municipal dos Direitos das Mulheres, contribuindo para a articulação entre a universidade, o poder público e a sociedade civil na construção de políticas públicas para as mulheres.",
+        "Instagram @neguem_ufu"
+      ],
+      paragraphLinks: {
+        "@neguem_ufu": "https://www.instagram.com/neguem_ufu"
+      }
     },
     {
       id: 9,
@@ -112,6 +120,27 @@
         "Entre os temas abordados estão prevenção da violência doméstica, economia do cuidado, educação para igualdade, sexualidades e afetividades, saúde e direitos sexuais e reprodutivos, climatério, mulheres na política, ética, cidadania, masculinidades, redes sociais e formação para a participação democrática.",
         "Seu trabalho busca aproximar conhecimento científico das experiências cotidianas, contribuindo para a formação de pessoas e instituições comprometidas com os direitos humanos."
       ]
+    },
+    {
+      id: 16,
+      title: "Atuação institucional e social em ONGs, Associações e Coletivos",
+      image: "QS00.jpg",
+      paragraphs: [
+        "Cláudia Guerra construiu uma trajetória marcada pela atuação em organizações da sociedade civil, associações e coletivos que defendem direitos humanos, saúde pública, cidadania feminina e enfrentamento às violências. Sua presença institucional reflete o compromisso com a transformação social em diferentes frentes.",
+        "CRESEX – Centro de Referência em Sexualidade (membro honorária desde 2018). Membra honorária do CRESEX, participando de eventos, aulas em pós-graduação, editoria de livros e publicações, além de ações educativas e preventivas sobre sexualidade, gênero e direitos humanos. Instagram @grupocresex",
+        "Promotoras Legais Populares (PLPs) — desde 2022. Promotora Legal Popular desde 2022, atuando na formação de mulheres em cidadania, direitos humanos e políticas públicas em territórios periféricos, fortalecendo a participação feminina e o controle social. Instagram @plpsuberlandia",
+        "ASUS – Associação dos Usuários do SUS (direção, 2025). Em 2025, Cláudia assumiu a direção da ASUS, atuando no recebimento de denúncias, apuração, controle social, fiscalizações e ações educativas e preventivas em defesa do SUS. Instagram @asus.udi",
+        "Movimento Mulheres Vivas UDI (coordenação, 2025). Assumiu a coordenação do Movimento Mulheres Vivas UDI, atuando na prevenção, acolhimento e articulação de redes de proteção em Uberlândia. Instagram @mulheresvivasudi",
+        "Coletivo 8 de Março UDI (integrante). Integrante do Coletivo 8 de Março UDI, participando da luta por direitos, igualdade de gênero e justiça social, fortalecendo a presença das mulheres nos espaços de decisão. Instagram @8muberlandia",
+        "Essa atuação integrada reflete a convicção de Cláudia Guerra de que a transformação social é coletiva, interseccional e exige a presença ativa nos espaços institucionais e populares."
+      ],
+      paragraphLinks: {
+        "@grupocresex": "https://www.instagram.com/grupocresex",
+        "@plpsuberlandia": "https://www.instagram.com/plpsuberlandia",
+        "@asus.udi": "https://www.instagram.com/asus.udi",
+        "@mulheresvivasudi": "https://www.instagram.com/mulheresvivasudi",
+        "@8muberlandia": "https://www.instagram.com/8muberlandia"
+      }
     },
     {
       id: 11,
