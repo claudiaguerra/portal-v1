@@ -2122,3 +2122,201 @@ figure {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ---------- 19. Depoimentos de Empatia ---------- */
+.depoimentos-band {
+  padding: var(--sp-6) 0;
+  background: var(--surface);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.depoimentos-head {
+  text-align: center;
+  margin-bottom: var(--sp-5);
+}
+
+.depoimentos-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-title);
+  color: var(--primary);
+  margin-bottom: var(--sp-2);
+}
+
+/* Barra de gradiente sob o título — mesmo padrão de destaque das seções */
+.depoimentos-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 14px auto 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.depoimentos-subtitle {
+  font-size: var(--fs-medium);
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.depoimentos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+
+.depoimento-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.depoimento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.depoimento-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.depoimento-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Legenda sobreposta na base da thumb (gradiente escuro da paleta) */
+.depoimento-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 48px var(--sp-3) var(--sp-3);
+  background: linear-gradient(180deg, transparent, rgba(26, 6, 38, 0.88));
+  text-align: center;
+}
+
+.depoimento-nome {
+  font-family: var(--font-heading);
+  font-size: var(--fs-base);
+  color: #fff;
+  margin-bottom: var(--sp-1);
+}
+
+.depoimento-frase {
+  font-size: var(--fs-small);
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+}
+
+/* Vídeo real (quando houver depoimentos cadastrados):
+   o iframe ocupa a thumb e a legenda fica em barra branca abaixo */
+.depoimento-card--real .depoimento-info {
+  position: static;
+  background: #fff;
+  text-align: left;
+}
+
+.depoimento-card--real .depoimento-nome {
+  color: var(--text);
+}
+
+.depoimento-card--real .depoimento-frase {
+  color: var(--text-muted);
+}
+
+/* Cards ilustrativos "Em breve" — visíveis apenas enquanto não há
+   depoimentos reais cadastrados em js/depoimentos.js */
+.depoimento-card--breve {
+  opacity: 0.92;
+}
+
+.depoimento-video-breve {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(195, 0, 193, 0.28), transparent 55%),
+    linear-gradient(135deg, var(--primary-dark, #4a126a), var(--primary));
+}
+
+.depoimento-play {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(26, 6, 38, 0.35);
+}
+
+.depoimento-play svg {
+  width: 28px;
+  height: 28px;
+  margin-left: 3px; /* compensação óptica do triângulo */
+}
+
+.depoimento-chip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #3d2a00;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-sm);
+}
+
+.depoimento-nome-breve {
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .depoimentos-grid {
+    gap: var(--sp-3);
+  }
+}
+
+@media (max-width: 640px) {
+  .depoimentos-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+
+/* CTA — Ver todos os depoimentos */
+.depoimentos-cta {
+  margin-top: var(--sp-5);
+  text-align: center;
+}
+
+.depoimentos-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Faixa amarela oficial — fecha o bloco e marca o início da seção Ações */
+.depoimentos-divider {
+  height: 12px;
+  background: linear-gradient(90deg, var(--accent), #f2d67a 50%, var(--accent));
+}
