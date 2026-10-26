@@ -1,0 +1,564 @@
+/* ============================================================
+   Portal Cláudia Guerra — Overlays da seção "Quem sou"
+   Estilos escopados com prefixo "qs-".
+   Herdam os tokens visuais do site (variáveis de :root).
+   Não sobrescreve estilos globais nem de outras seções.
+   ============================================================ */
+
+/* ---------- Scroll do fundo bloqueado enquanto aberta ---------- */
+body.qs-scroll-lock {
+  overflow: hidden;
+}
+
+/* ---------- Container da overlay ---------- */
+.qs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1200; /* acima de header (1000) e demais elementos */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-3);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.qs-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.qs-overlay-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* ---------- Cartão ---------- */
+.qs-overlay-card {
+  position: relative;
+  width: min(960px, 100%);
+  max-height: 88vh;
+  display: grid;
+  grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+  background: #ffffff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.qs-overlay.is-open .qs-overlay-card {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Imagem (desktop: esquerda) — entra antes do texto ---------- */
+.qs-overlay-media {
+  position: relative;
+  min-height: 260px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s;
+}
+
+.qs-overlay.is-open .qs-overlay-media {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-overlay-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(74, 18, 106, 0.28));
+  pointer-events: none;
+}
+
+.qs-overlay-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+}
+
+/* ---------- Texto (desktop: direita) ---------- */
+.qs-overlay-body {
+  padding: var(--sp-4) var(--sp-5);
+  overflow-y: auto;
+  max-height: 88vh;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+/* ---------- Título com revelação progressiva (máscara L → R) ---------- */
+.qs-overlay-title-wrap {
+  position: relative;
+  overflow: hidden;
+  margin: 0 0 var(--sp-4);
+}
+
+/* A máscara (mesma cor do cartão) cobre o título e se desloca
+   da esquerda para a direita ao abrir — revelação progressiva.
+   Na saída, retorna da direita para a esquerda (desfaz o título). */
+.qs-overlay-title-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  transform: translateX(0);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
+  pointer-events: none;
+}
+
+.qs-overlay.is-open .qs-overlay-title-wrap::after {
+  transform: translateX(102%);
+}
+
+.qs-overlay-title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--primary-dark);
+}
+
+/* ---------- Parágrafos — sobem com desaceleração (stagger) ---------- */
+.qs-paragraph {
+  margin: 0 0 var(--sp-3);
+  font-size: var(--fs-base);
+  line-height: 1.75;
+  color: var(--text);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.34s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.34s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(2) {
+  transition-delay: 0.42s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(3) {
+  transition-delay: 0.5s;
+}
+
+.qs-overlay-body .qs-paragraph:nth-of-type(4) {
+  transition-delay: 0.58s;
+}
+
+.qs-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.qs-overlay.is-open .qs-paragraph {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Slogan em destaque (cards especiais) ---------- */
+.qs-slogan {
+  margin: 0 0 var(--sp-2);
+  font-family: var(--font-accent);
+  font-size: clamp(24px, 2.8vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--secondary);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.28s;
+}
+
+.qs-overlay.is-open .qs-slogan {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Link inline dentro do parágrafo ---------- */
+.qs-inline-link {
+  color: var(--secondary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(195, 0, 193, 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.qs-inline-link:hover,
+.qs-inline-link:focus-visible {
+  color: var(--primary);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Botão de navegação interna ---------- */
+.qs-cta-wrap {
+  margin-top: var(--sp-4);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.qs-overlay.is-open .qs-cta-wrap {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
+  box-shadow: var(--shadow-md);
+  touch-action: manipulation;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.qs-cta-btn:hover,
+.qs-cta-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  filter: brightness(1.08);
+}
+
+.qs-cta-btn:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Navegação entre overlays (anterior / próximo) ---------- */
+.qs-overlay-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  margin-top: var(--sp-4);
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s,
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.56s;
+}
+
+.qs-overlay.is-open .qs-overlay-nav {
+  opacity: 1;
+  transform: none;
+}
+
+.qs-nav-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--primary);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--primary-dark);
+  cursor: pointer;
+  padding: 0;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.2s ease;
+}
+
+.qs-nav-btn:hover:not(:disabled) {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: scale(1.06);
+}
+
+.qs-nav-btn:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+.qs-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* ---------- Botão fechar ---------- */
+.qs-overlay-close {
+  position: absolute;
+  top: var(--sp-2);
+  right: var(--sp-2);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--primary-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  touch-action: manipulation;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.qs-overlay-close:hover {
+  background: #ffffff;
+  color: var(--secondary);
+  transform: rotate(90deg) scale(1.06);
+}
+
+.qs-overlay-close:focus-visible {
+  outline: 3px solid var(--secondary-light);
+  outline-offset: 2px;
+}
+
+/* ---------- Saída (navegação e fechamento) — inverso da entrada ----------
+   Texto desce, título se desfaz da direita para a esquerda, foto esmaece.
+   Regras após as de .is-open para terem precedência na cascata. */
+.qs-overlay.is-exiting .qs-overlay-media {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.32s ease-in, transform 0.32s ease-in;
+}
+
+.qs-overlay.is-exiting .qs-overlay-title-wrap::after {
+  transform: translateX(0);
+  transition: transform 0.36s ease-in;
+}
+
+.qs-overlay.is-exiting .qs-paragraph,
+.qs-overlay.is-exiting .qs-slogan,
+.qs-overlay.is-exiting .qs-cta-wrap,
+.qs-overlay.is-exiting .qs-overlay-nav {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+/* ---------- Título da timeline "Marco Temporal" ---------- */
+.qs-marco-title {
+  margin: 0 0 var(--sp-6);
+  text-align: center;
+  font-family: var(--font-accent);
+  font-size: clamp(30px, 3.6vw, 40px);
+  font-weight: 600;
+  color: var(--secondary);
+  line-height: 1.25;
+}
+
+.qs-marco-title::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 4px;
+  margin: var(--sp-2) auto 0;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+/* ---------- Trigger na timeline (substitui o link) ---------- */
+.qs-trigger {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* ---------- CTA "Conheça minha história completa" (abre o marco 1) ---------- */
+.qs-cta-trigger {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* ---------- Mobile: empilhado, imagem em cima, texto rolável ---------- */
+@media (max-width: 767px) {
+  .qs-overlay {
+    padding: var(--sp-2);
+    align-items: flex-end;
+  }
+
+  /* Cartão em coluna: a foto ocupa a parte de cima e o texto
+     rola por toque na parte de baixo (sem texto cortado) */
+  .qs-overlay-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 92vh;
+    border-radius: var(--radius-card) var(--radius-card) 0 0;
+  }
+
+  /* Foto com proporção fixa e enquadramento superior — a cabeça
+     fica sempre visível (sem efeito "guilhotina") */
+  .qs-overlay-media {
+    flex: 0 0 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 40vh;
+    min-height: 0;
+  }
+
+  .qs-overlay-img {
+    object-position: center top;
+  }
+
+  /* Corpo flexível com rolagem por toque garantida */
+  .qs-overlay-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-3);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  }
+
+  .qs-overlay-title-wrap {
+    margin-bottom: var(--sp-3);
+  }
+
+  /* Botão fechar flutuando sobre o backdrop (fora da foto):
+     área de toque de 44px com círculo visual de ~30px */
+  .qs-overlay-close {
+    top: calc(env(safe-area-inset-top, 0px) + 10px);
+    right: 12px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .qs-overlay-close svg {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 50%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* No toque não há hover persistente — mantém só o círculo visível */
+  .qs-overlay-close:hover {
+    background: transparent;
+    transform: none;
+  }
+}
+
+/* ---------- Landscape (celular deitado): mesmo layout do desktop ----------
+   Com o celular na horizontal (tela baixa e larga), a coluna empilhada do
+   modo retrato transformaria a foto numa faixa fina no topo. Esta media
+   query — orientação landscape em telas com pouca altura (celulares
+   deitados; tablets/monitores em landscape ficam acima de 600px de altura
+   e não são atingidos) — restaura o layout do desktop: imagem à esquerda
+   + texto à direita, com o texto rolável e o cartão centralizado
+   preenchendo a altura da tela (100dvh, com fallback em vh).
+   Nenhuma regra aqui vaza para o modo retrato. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .qs-overlay {
+    align-items: center;
+    padding: var(--sp-3);
+  }
+
+  .qs-overlay-card {
+    display: grid;
+    grid-template-columns: minmax(0, 44%) minmax(0, 56%);
+    max-height: calc(92vh - var(--sp-3) - var(--sp-3));
+    max-height: calc(100dvh - var(--sp-3) - var(--sp-3));
+    border-radius: var(--radius-card);
+  }
+
+  .qs-overlay-media {
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  .qs-overlay-img {
+    object-position: center top;
+  }
+
+  .qs-overlay-body {
+    min-height: 0;
+    max-height: none;
+    padding: var(--sp-4) var(--sp-5);
+    padding-bottom: calc(var(--sp-4) + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---------- prefers-reduced-motion: desliga animações ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .qs-overlay,
+  .qs-overlay-card,
+  .qs-overlay-media,
+  .qs-overlay-title-wrap,
+  .qs-overlay-title,
+  .qs-paragraph,
+  .qs-slogan,
+  .qs-cta-wrap,
+  .qs-overlay-nav,
+  .qs-nav-btn,
+  .qs-overlay-close {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* A máscara fica sempre afastada, revelando o título por completo */
+  .qs-overlay-title-wrap::after {
+    transform: translateX(102%) !important;
+    transition: none !important;
+  }
+
+  /* Mantém o estado desabilitado das setas visível */
+  .qs-nav-btn:disabled {
+    opacity: 0.35 !important;
+  }
+}
+
+/* ---------- Anos na timeline (Quem Sou) ---------- */
+#quem-sou .qs-timeline-year {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: calc(0.55em + 7px); /* centro alinhado ao marcador circular */
+  transform: translateY(-50%) rotate(-7deg);
+  font-family: var(--font-accent);
+  font-size: var(--fs-medium);
+  line-height: 1;
+  color: var(--secondary-light);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Mobile: reserva espaço à esquerda para os anos sem desalinhar os 15 itens */
+@media (max-width: 900px) {
+  #quem-sou .timeline {
+    padding-left: 60px;
+  }
+}

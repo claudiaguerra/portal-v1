@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Cláudia Guerra — Quem mete a colher transforma vidas</title>
+  <meta name="description" content="Portal oficial de Cláudia Guerra: trajetória, ações, Plano Participativo Minas que Cuida, conteúdos e participação. Quem mete a colher não assiste aos problemas de longe.">
+  <meta name="author" content="Portal Cláudia Guerra">
+  <meta name="theme-color" content="#6A1B9A">
+  <meta name="application-name" content="Portal Cláudia Guerra">
+
+  <!-- Compartilhamento social -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Portal Cláudia Guerra">
+  <meta property="og:title" content="Portal Cláudia Guerra — Quem mete a colher transforma vidas">
+  <meta property="og:description" content="Trajetória, ações e participação na construção de uma Minas que Cuida. Quem mete a colher não assiste aos problemas de longe.">
+  <meta property="og:image" content="imagens/logo_shadow.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon: SVG vetorial (navegadores modernos) + PNGs de fallback + ícone iOS + manifest PWA -->
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Tipografia oficial: Montserrat (títulos), Open Sans (texto), Caveat (destaques) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- Overlays da seção Quem Sou (escopado, prefixo qs-) -->
+  <link rel="stylesheet" href="css/qs-overlays.css">
+  <!-- Narrativa "Na narrativa de outras bocas" (escopado, prefixo qsn-) -->
+  <link rel="stylesheet" href="css/qs-narrativa.css">
+  <link rel="stylesheet" href="css/acoes-cards.css">
+  <!-- Overlays dos cards da seção Ações (escopado, prefixo acoes-) -->
+  <link rel="stylesheet" href="css/acoes-overlays.css">
+  <link rel="stylesheet" href="css/faixa-propaganda.css
+  src="js/faixa-propaganda.js"">
+  <script src="js/main.js"></script>
+  <script src="js/js/main.js"></script>
+  <script src="js/faixa-propaganda.js"></script>
+</head>
+<body>
+
+  <a class="skip-link" href="#inicio">Pular para o conteúdo principal</a>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="brand" aria-label="Portal Cláudia Guerra — voltar ao início">
+        <img class="brand-logo" src="imagens/logo_shadow.png" alt="Logo Portal Cláudia Guerra" width="1024" height="779">
+        <!-- Wordmark textual ao lado do logotipo (disposição da referência: Portal + Cláudia/Guerra empilhados) -->
+        <span class="brand-text" aria-hidden="true">
+          <span class="brand-kicker">Portal</span>
+          <span class="brand-name">
+            <span class="brand-line">Cláudia</span>
+            <span class="brand-line">Guerra</span>
+          </span>
+        </span>
+      </a>
+
+      <a class="eleicoes-logo-link" href="#eleicoes-2026" aria-label="Eleições 2026 — minha proposta de campanha">
+        <!-- Arte oficial E26FE.png usada INTEGRALMENTE (sem releitura). O selo
+             navy fixo garante o contraste do conteúdo (texto branco/amarelo)
+             tanto no header roxo do topo quanto no header branco após o
+             scroll, e transborda da barra como adesivo. Tamanho fixo no <img>
+             impede renderização no tamanho natural mesmo com CSS em cache. -->
+        <img class="eleicoes-logo" src="imagens/logo/E26FE.png" alt="Eleições 2026 — Vote na democracia" width="850" height="567" style="width: 100%; height: 100%; object-fit: contain;">
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+        <ul class="nav-list">
+          <li><a class="nav-link is-active" href="#inicio">Início</a></li>
+          <li><a class="nav-link" href="#quem-sou">Quem Sou</a></li>
+          <li><a class="nav-link" href="#acoes">Ações</a></li>
+          <li><a class="nav-link" href="#minas-que-cuida">Minas que Cuida</a></li>
+          <li><a class="nav-link" href="#infos">Infos</a></li>
+          <li class="nav-cta"><a class="btn btn-accent btn-sm" href="#participe">Participe</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu de navegação">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ============================================================
+         HERO — 5 slides
+    ============================================================ -->
+    <section class="hero" id="hero" aria-roledescription="carrossel" aria-label="Destaques do portal">
+      <div class="hero-slides">
+
+        <!-- Slide 01 — Quem Sou -->
+        <article class="hero-slide is-active" data-slide="0" aria-roledescription="slide" aria-label="Slide 1 de 5: Quem Sou">
+          <div class="hero-bg" aria-hidden="true">
+            <img class="hero-bg-img" src="imagens/quem_sou.jpg" alt="" loading="eager" decoding="async">
+            <div class="hero-bg-tint"></div>
+          </div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <h1 class="hero-title">Quem mete a colher <span class="accent-word">não assiste</span> aos problemas de longe</h1>
+              <p class="hero-text">Quem não assiste, age de perto. Conheça a trajetória de Cláudia Guerra, uma mulher de luta que transforma experiência, escuta e compromisso em ação.</p>
+              <p class="hero-sign">Mulher de luta, que mete a colher, faz a diferença e transforma vidas.</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent" href="#quem-sou">Conheça minha história completa</a>
+              </div>
+            </div>
+            <div class="hero-media">
+              <span class="hero-ring" aria-hidden="true"></span>
+              <figure class="hero-photo-frame">
+                <img class="hero-photo" src="imagens/quem_sou.jpg" alt="Fotografia de Cláudia Guerra" loading="eager" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 02 — Ações -->
+        <article class="hero-slide" data-slide="1" aria-roledescription="slide" aria-label="Slide 2 de 5: Ações">
+          <div class="hero-bg" aria-hidden="true">
+            <img class="hero-bg-img" src="imagens/acoes.jpg" alt="" loading="lazy" decoding="async">
+            <div class="hero-bg-tint"></div>
+          </div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <h2 class="hero-title">Eu <span class="accent-word">meto a colher</span> para transformar vidas</h2>
+              <p class="hero-text">Eu meto a colher em ações, iniciativas e compromissos construídos para enfrentar desafios reais das mulheres, famílias e comunidades mineiras.</p>
+              <p class="hero-sign">Quem mete a colher transforma cuidado em ação.</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent" href="#acoes">Conheça todas as ações</a>
+              </div>
+            </div>
+            <div class="hero-media">
+              <span class="hero-ring" aria-hidden="true"></span>
+              <figure class="hero-photo-frame">
+                <img class="hero-photo" src="imagens/acoes.jpg" alt="Fotografia de Cláudia Guerra em ação" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 03 — Minas que Cuida -->
+        <article class="hero-slide" data-slide="2" aria-roledescription="slide" aria-label="Slide 3 de 5: Minas que Cuida">
+          <div class="hero-bg" aria-hidden="true">
+            <img class="hero-bg-img" src="imagens/minas_que_cuida.jpg" alt="" loading="lazy" decoding="async">
+            <div class="hero-bg-tint"></div>
+          </div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <h2 class="hero-title">Quem mete a colher ajuda a construir uma <span class="accent-word">Minas que cuida</span></h2>
+              <p class="hero-text">Uma Minas que cuida começa com a sua participação. Ajude a transformar demandas em propostas no Plano Participativo Minas que Cuida.</p>
+              <p class="hero-sign">Meta a colher na construção de Minas.</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent" href="#minas-que-cuida">Conheça Minas que Cuida</a>
+              </div>
+            </div>
+            <div class="hero-media">
+              <span class="hero-ring" aria-hidden="true"></span>
+              <figure class="hero-photo-frame">
+                <img class="hero-photo" src="imagens/minas_que_cuida.jpg" alt="Fotografia de Cláudia Guerra" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 04 — Infos -->
+        <article class="hero-slide" data-slide="3" aria-roledescription="slide" aria-label="Slide 4 de 5: Infos">
+          <div class="hero-bg" aria-hidden="true">
+            <img class="hero-bg-img" src="imagens/infos.jpg" alt="" loading="lazy" decoding="async">
+            <div class="hero-bg-tint"></div>
+          </div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <h2 class="hero-title"><span class="accent-word">Quem mete a colher</span> escuta, dialoga e constrói soluções</h2>
+              <p class="hero-text">Quem mete a colher acompanha, informa-se e participa. Veja vídeos, notícias, encontros e conteúdos sobre a atuação de Cláudia Guerra.</p>
+              <p class="hero-sign">Escuta que vira ação.</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent" href="#infos">Veja informações</a>
+              </div>
+            </div>
+            <div class="hero-media">
+              <span class="hero-ring" aria-hidden="true"></span>
+              <figure class="hero-photo-frame">
+                <img class="hero-photo" src="imagens/infos.jpg" alt="Fotografia de Cláudia Guerra" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <!-- Slide 05 — Participe -->
+        <article class="hero-slide" data-slide="4" aria-roledescription="slide" aria-label="Slide 5 de 5: Participe">
+          <div class="hero-bg" aria-hidden="true">
+            <img class="hero-bg-img" src="imagens/participe2.jpg" alt="" loading="lazy" decoding="async">
+            <div class="hero-bg-tint"></div>
+          </div>
+          <div class="container hero-inner">
+            <div class="hero-copy">
+              <h2 class="hero-title">Meta a colher e participe da construção de <span class="accent-word">soluções para Minas</span></h2>
+              <p class="hero-text">Soluções para Minas nascem da sua participação. Ajude a construir propostas, fortalecer ideias e transformar a realidade das mineiras e dos mineiros.</p>
+              <p class="hero-sign">Quem participa mete a colher.</p>
+              <div class="hero-actions">
+                <a class="btn btn-accent" href="#participe">Quero participar</a>
+              </div>
+            </div>
+            <div class="hero-media">
+              <span class="hero-ring" aria-hidden="true"></span>
+              <figure class="hero-photo-frame">
+                <img class="hero-photo" src="imagens/participe.jpg" alt="Fotografia de Cláudia Guerra" loading="lazy" decoding="async">
+              </figure>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <button class="hero-arrow hero-arrow-prev" type="button" aria-label="Slide anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <button class="hero-arrow hero-arrow-next" type="button" aria-label="Próximo slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <div class="hero-dots" role="tablist" aria-label="Selecionar slide"></div>
+    </section>
+
+    <!-- ============================================================
+         QUEM SOU
+    ============================================================ -->
+    <section class="section section-quemsou" id="quem-sou" aria-labelledby="quem-sou-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Minha trajetória</p>
+          <h2 class="section-title" id="quem-sou-title">Quem Sou</h2>
+          <p class="section-lede">Há mais de 30 anos dedico minha vida à defesa das mulheres, das famílias e da construção de políticas públicas. Conheça minha trajetória, as experiências que moldaram minha missão e os caminhos que me trouxeram até aqui.</p>
+        </header>
+
+        <h3 class="qs-marco-title">Marco Temporal</h3>
+
+        <div class="quemsou-grid">
+          <figure class="quemsou-media reveal">
+            <!-- ATUALIZAR: fotos complementares da trajetória podem ser adicionadas aqui -->
+            <img class="quemsou-photo" src="imagens/quem_sou.jpg" alt="Fotografia de Cláudia Guerra" loading="lazy" decoding="async">
+            <span class="quemsou-chip" aria-hidden="true">30+ anos de luta</span>
+          </figure>
+
+          <div class="quemsou-content">
+            <ul class="timeline reveal">
+              <!-- Cada marco abre uma overlay (Overlay Page) com a biografia completa -->
+              <li class="timeline-item"><span class="qs-timeline-year" aria-hidden="true">1969</span><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="1" aria-haspopup="dialog">Origem, infância e vida em Uberlândia.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="2" aria-haspopup="dialog">Família, valores e história de vida.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="3" aria-haspopup="dialog">Formação acadêmica: Mestrado (USP, 1998), Doutorado (UFU, 2018) e professora universitária.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="4" aria-haspopup="dialog">Ativismo pelos direitos das mulheres e cultura da paz nas famílias.</button></li>
+              <li class="timeline-item"><span class="qs-timeline-year" aria-hidden="true">1997</span><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="5" aria-haspopup="dialog">Participação na criação da ONG SOS Mulheres.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="6" aria-haspopup="dialog">Criação e implantação da Casa Abrigo Travessia.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="7" aria-haspopup="dialog">Participação na criação do Programa de Abordagem Multidisciplinar em Violência Familiar (PAM/PPVD).</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="8" aria-haspopup="dialog">Membro fundadora do NEGUEM/UFU (1992) e atuação no Conselho Municipal dos Direitos das Mulheres.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="9" aria-haspopup="dialog">Gestão pública na Divisão dos Direitos das Mulheres.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="10" aria-haspopup="dialog">Professora, palestrante e consultora.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="16" aria-haspopup="dialog">Atuação institucional e social em ONGs, Associações e Coletivos.</button></li>
+              <li class="timeline-item"><span class="qs-timeline-year" aria-hidden="true">2021</span><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="11" aria-haspopup="dialog">Vereadora de Uberlândia.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="12" aria-haspopup="dialog">Primeira Procuradora da Mulher da Câmara Municipal.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="13" aria-haspopup="dialog">Atuação em mandatos, conselhos, voluntariado e movimentos sociais.</button></li>
+              <li class="timeline-item"><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="14" aria-haspopup="dialog">Suplente ao cargo de Deputada Estadual.</button></li>
+              <li class="timeline-item"><span class="qs-timeline-year" aria-hidden="true">2026</span><span class="timeline-dot" aria-hidden="true"></span><button class="timeline-link qs-trigger" type="button" data-qs-id="15" aria-haspopup="dialog">Candidata a Deputada Estadual de Minas Gerais nas Eleições 2026.</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAIXA — "Na Narrativa de Outras Bocas"
+         Faixa independente entre "Quem Sou" e "Ações": frase
+         centralizada na faixa inteira, imagem QS_MINHA_HISTORIA e
+         botão que abre a overlay "Na Narrativa de Outras Bocas".
+         (Não é uma .section — preserva o fundo alternado das demais.)
+    ============================================================ -->
+    <div class="qsn-band" role="region" aria-label="Na narrativa de outras bocas">
+      <div class="container">
+        <blockquote class="qsn-band-phrase reveal">“Quem mete a colher não assiste aos problemas de longe.”</blockquote>
+
+        <div class="qsn-entry reveal">
+          <figure class="qsn-entry-media">
+            <img class="qsn-entry-img" src="imagens/qs/QS_MINHA_HISTORIA.png" alt="Cláudia Guerra - NA NARRATIVA DE OUTRAS BOCAS" loading="lazy" decoding="async">
+          </figure>
+          <div class="qsn-entry-copy">
+            <p class="qsn-entry-kicker">A trajetória em 10 capítulos</p>
+            <button class="qsn-open-btn" type="button" aria-haspopup="dialog">
+              <span class="qsn-open-btn-name">Cláudia Guerra -</span>
+              <span class="qsn-open-btn-title">NA NARRATIVA DE OUTRAS BOCAS</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         DEPOIMENTOS DE EMPATIA
+         Vídeos exibidos diretamente na página (sem overlay).
+         Os cards são inseridos dinamicamente via js/depoimentos.js.
+    ============================================================ -->
+    <div class="depoimentos-band" role="region" aria-label="Depoimentos de empatia">
+      <div class="container">
+        <header class="depoimentos-head reveal">
+          <p class="section-eyebrow">Na voz de quem viveu</p>
+          <h2 class="section-title">Depoimentos de Empatia</h2>
+        </header>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         AÇÕES
+    ============================================================ -->
+    <section class="section section-acoes" id="acoes" aria-labelledby="acoes-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Atuação prática</p>
+          <h2 class="section-title" id="acoes-title">Ações</h2>
+          <p class="section-lede">Ao longo de mais de três décadas de atuação, transformei escuta, conhecimento e compromisso em ações concretas. Conheça algumas iniciativas que marcaram essa trajetória e continuam inspirando a construção de uma Minas que Cuida.</p>
+        </header>
+
+        <div class="cards-grid">
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+              <h3 class="card-title">Proteção às Mulheres e Famílias</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>SOS Mulher e Família</li>
+              <li>Casa Abrigo Travessia</li>
+              <li>Programa PAM/PPVD</li>
+              <li>Redes de proteção</li>
+              <li>Cultura da paz nas famílias</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 6h14"/><path d="M7 6l-3 7a3 3 0 0 0 6 0L7 6z"/><path d="M17 6l-3 7a3 3 0 0 0 6 0l-3-7z"/><path d="M8 21h8"/></svg></span>
+              <h3 class="card-title">Políticas Públicas para Mulheres</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>Divisão dos Direitos das Mulheres</li>
+              <li>Conselho Municipal dos Direitos das Mulheres</li>
+              <li>Procuradoria da Mulher</li>
+              <li>Defesa da autonomia feminina</li>
+              <li>Enfrentamento às violências</li>
+              <li>ASUS – Associação dos Usuários do SUS</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V10"/><path d="M10 21V10"/><path d="M14 21V10"/><path d="M19 21V10"/><path d="M3 10h18l-9-7-9 7z"/></svg></span>
+              <h3 class="card-title">Mandato e Atuação Legislativa</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>Vereadora de Uberlândia (2021–2024)</li>
+              <li>Primeira Procuradora da Mulher</li>
+              <li>Destinação de recursos</li>
+              <li>Políticas públicas</li>
+              <li>Fiscalização</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg></span>
+              <h3 class="card-title">Educação, Pesquisa e Formação</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>Professora universitária</li>
+              <li>Doutora em História</li>
+              <li>Palestras</li>
+              <li>Cursos</li>
+              <li>Formação cidadã</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.5c3 .3 5.5 2.4 5.5 5.5"/></svg></span>
+              <h3 class="card-title">Participação Social e Voluntariado</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>Movimento de Mulheres</li>
+              <li>NEGUEM/UFU</li>
+              <li>Mulheres do Brasil</li>
+              <li>Promotora Legal Popular</li>
+              <li>Oficinas</li>
+              <li>Conselhos</li>
+              <li>CRESEX – Centro de Referência em Sexualidade</li>
+              <li>Movimento Mulheres Vivas UDI</li>
+              <li>Coletivo 8 de Março UDI</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-tag">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15z"/></svg></span>
+              <h3 class="card-title">Diversidade, Cultura e Inclusão</h3>
+            </div>
+            <div class="card-list-wrap">
+              <ul class="card-list">
+              <li>Diversidade</li>
+              <li>Direitos humanos</li>
+              <li>Cultura</li>
+              <li>Saúde</li>
+              <li>Educação inclusiva</li>
+              <li>Trabalho, renda e economia do cuidado</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <blockquote class="section-quote reveal">“Quem mete a colher transforma escuta em ação.”</blockquote>
+
+        <div class="section-ctas reveal">
+          <a class="btn btn-accent" href="#participe">Meta a colher e participe</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ELEIÇÕES 2026
+    ============================================================ -->
+    <section class="section section-eleicoes" id="eleicoes-2026" aria-labelledby="eleicoes-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Minha proposta de campanha</p>
+          <h2 class="section-title" id="eleicoes-title">Eleições 2026</h2>
+        </header>
+      </div>
+
+      <!-- Banda expandida de ponta a ponta: imagem | painel roxo | imagem -->
+      <div class="eleicoes-grid reveal">
+        <figure class="eleicoes-media eleicoes-media-cg">
+          <img src="imagens/qs/CG.jpg" alt="Cláudia Guerra — candidata a Deputada Estadual de Minas Gerais nas Eleições 2026" loading="lazy" decoding="async">
+        </figure>
+
+        <div class="eleicoes-panel">
+          <h3 class="eleicoes-title-text">Chegou a hora de Minas Gerais cuidar de quem mais precisa!</h3>
+          <p class="eleicoes-text">Com Cláudia Guerra, professora, historiadora e defensora das mulheres, vamos construir um estado mais justo e inclusivo.</p>
+
+          <p class="eleicoes-vote">
+            <span class="eleicoes-vote-star" aria-hidden="true">✦</span>
+            <span class="eleicoes-vote-label">Vote</span>
+            <span class="eleicoes-vote-number">18000</span>
+          </p>
+
+          <p class="eleicoes-slogan">
+            <span>É A NOSSA VEZ,</span>
+            <span class="eleicoes-slogan-minas">MINAS!</span>
+          </p>
+        </div>
+
+        <figure class="eleicoes-media eleicoes-media-rede">
+          <img src="imagens/logo/logo-rede-principal-cor-vertical-300dpi.png" alt="Logo Rede Sustentabilidade" loading="lazy" decoding="async">
+        </figure>
+      </div>
+
+      <!-- Bloco "A base da minha candidatura" — abaixo da banda, mesma seção -->
+      <div class="container">
+        <div class="eleicoes-plataforma reveal">
+          <h3 class="eleicoes-plataforma-title">A base da minha candidatura</h3>
+          <p class="eleicoes-plataforma-lead">Quem me conhece sabe: eu não assisto aos problemas de longe, eu meto a colher! Como professora, historiadora e ativista, quero levar para a Assembleia Legislativa a força de um mandato coletivo, transparente e focado em cuidar de quem mais precisa.</p>
+          <p class="eleicoes-plataforma-text">Foram 63 propostas divididas em 11 eixos temáticos iniciais que serviram de alicerce para a construção coletiva do Plano Participativo "Minas que Cuida". Elaborado em julho de 2026, ele servirá como ponto de partida para que eu, Cláudia Guerra, como Deputada Estadual por Minas Gerais, construa de forma coletiva e por meio de escutas ativas as minhas cartas-compromisso finais com a população mineira. Meus valores centrais defendem um Estado eficiente, transparente e presente onde as pessoas mais precisam, guiado por justiça social, honestidade, empatia e aplicação responsável dos recursos públicos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MINAS QUE CUIDA
+    ============================================================ -->
+    <section class="section section-minas" id="minas-que-cuida" aria-labelledby="minas-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Plano participativo</p>
+          <h2 class="section-title" id="minas-title">Minas que Cuida</h2>
+          <p class="section-lede">O <strong>Minas que Cuida</strong> é um plano construído com a participação da população. A partir da escuta, do diálogo e da experiência de quem vive a realidade dos municípios mineiros, transformamos demandas em propostas para um estado mais justo, humano e acolhedor.</p>
+        </header>
+
+        <div class="minas-intro reveal">
+          <div class="minas-copy">
+            <h3 class="minas-subtitle">O que é e como está sendo construído</h3>
+            <p>O plano nasce da escuta popular: escutatórias, encontros presenciais e participação digital em todas as regiões de Minas. Cada ideia, demanda e proposta enviada pela população é o ponto de partida para políticas públicas que colocam o cuidado e a dignidade no centro.</p>
+            <ul class="minas-how">
+              <li><strong>Envio de propostas</strong> — contribua com ideias e demandas da sua realidade.</li>
+              <li><strong>Escutatórias</strong> — rodas de conversa que escutam antes de propor.</li>
+              <li><strong>Encontros presenciais</strong> — participação popular em todo o estado.</li>
+              <li><strong>Participação digital</strong> — contribua de onde estiver.</li>
+            </ul>
+          </div>
+          <figure class="minas-media">
+            <img class="minas-photo" src="imagens/minas_que_cuida.jpg" alt="Encontro de construção do Plano Minas que Cuida" loading="lazy" decoding="async">
+          </figure>
+        </div>
+
+        <div class="eixos-head reveal" id="eixos">
+          <h3 class="eixos-title">Os 11 eixos temáticos</h3>
+          <p class="eixos-lede">Conheça os eixos do Plano Participativo. Cada eixo terá uma página própria de aprofundamento.</p>
+        </div>
+
+        <!-- ATENÇÃO: os 11 eixos abaixo são uma PROPOSTA derivada dos temas do projeto.
+             Substitua títulos e descrições pelos eixos oficiais quando forem definidos.
+             Os botões "Saiba mais" apontarão para as páginas de aprofundamento de cada eixo. -->
+        <div class="eixos-grid">
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">01</span>
+            <h4 class="eixo-name">Mulheres: proteção, autonomia e enfrentamento às violências</h4>
+            <p class="eixo-desc">Propostas para proteger, acolher e fortalecer mulheres em todo o estado.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">02</span>
+            <h4 class="eixo-name">Famílias e cultura da paz</h4>
+            <p class="eixo-desc">Políticas de cuidado, convivência familiar e cultura da paz nos lares mineiros.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">03</span>
+            <h4 class="eixo-name">Educação pública e formação cidadã</h4>
+            <p class="eixo-desc">Escola de qualidade, valorização de professores e formação cidadã para todas as idades.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">04</span>
+            <h4 class="eixo-name">Saúde, cuidado e saúde mental</h4>
+            <p class="eixo-desc">Acesso ampliado à saúde, cuidado integral e atenção à saúde mental em todas as regiões.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">05</span>
+            <h4 class="eixo-name">Trabalho, renda e economia do cuidado</h4>
+            <p class="eixo-desc">Geração de emprego e renda, valorização do trabalho feminino e da economia do cuidado.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">06</span>
+            <h4 class="eixo-name">Segurança pública com cidadania</h4>
+            <p class="eixo-desc">Segurança pública baseada em prevenção, proteção e respeito aos direitos humanos.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">07</span>
+            <h4 class="eixo-name">Cultura, diversidade e inclusão</h4>
+            <p class="eixo-desc">Cultura viva, diversidade respeitada e inclusão de todas as mineiras e mineiros.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">08</span>
+            <h4 class="eixo-name">Direitos humanos e equidade</h4>
+            <p class="eixo-desc">Defesa intransigente dos direitos humanos e redução das desigualdades regionais.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">09</span>
+            <h4 class="eixo-name">Juventude e futuro</h4>
+            <p class="eixo-desc">Oportunidades, educação e projetos de vida para a juventude de Minas Gerais.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">10</span>
+            <h4 class="eixo-name">Proteção social e combate à fome</h4>
+            <p class="eixo-desc">Rede de proteção social, segurança alimentar e dignidade para quem mais precisa.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+
+          <article class="card eixo-card reveal">
+            <span class="eixo-num" aria-hidden="true">11</span>
+            <h4 class="eixo-name">Cidades acolhedoras</h4>
+            <p class="eixo-desc">Habitação digna, mobilidade, meio ambiente e municípios que acolhem suas populações.</p>
+            <a class="link-inline" href="#" title="Página do eixo (em breve)">Saiba mais →</a>
+          </article>
+        </div>
+
+        <div class="escutatoria reveal">
+          <span class="escutatoria-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-3A8 8 0 1 1 21 12z"/><path d="M9 10h6"/><path d="M9 13h4"/></svg></span>
+          <div>
+            <h3 class="escutatoria-title">Escutatória: a escuta como ponto de partida</h3>
+            <p class="escutatoria-text">A escuta é o primeiro passo: escutar as pessoas para transformar as demandas da população em políticas públicas.</p>
+          </div>
+        </div>
+
+        <blockquote class="section-quote reveal">“Quem mete a colher ajuda a construir uma Minas que cuida.”</blockquote>
+
+        <div class="section-ctas reveal">
+          <a class="btn btn-accent" href="#participe">Meta a colher e participe</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INFOS
+    ============================================================ -->
+    <section class="section section-infos" id="infos" aria-labelledby="infos-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Conteúdos e notícias</p>
+          <h2 class="section-title" id="infos-title">Infos</h2>
+          <p class="section-lede">Acompanhe conteúdos, notícias, entrevistas, artigos, palestras e materiais que ajudam a compreender melhor as causas defendidas por Cláudia Guerra e os temas que impactam a vida das mulheres, das famílias e de Minas Gerais.</p>
+        </header>
+
+        <div class="infos-grid">
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Notícias</h3>
+            <p class="card-text">Publicações e notícias relevantes sobre a atuação de Cláudia Guerra.</p>
+          </article>
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Artigos e Opinião</h3>
+            <p class="card-text">Textos e reflexões sobre políticas públicas, direitos das mulheres, educação, cultura e cidadania.</p>
+          </article>
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Entrevistas e Reportagens</h3>
+            <p class="card-text">Participações em veículos de comunicação: rádio, TV e podcasts.</p>
+          </article>
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Palestras e Eventos</h3>
+            <p class="card-text">Registros de palestras, seminários, audiências públicas e encontros.</p>
+          </article>
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Vídeos</h3>
+            <p class="card-text">Conteúdos publicados no YouTube, incorporados ao portal.</p>
+          </article>
+          <article class="card infos-card reveal">
+            <h3 class="card-title">Conteúdos Especiais</h3>
+            <p class="card-text">Campanhas, cartazes de mobilização, materiais institucionais e conteúdos atemporais.</p>
+          </article>
+        </div>
+
+        <!-- Vídeo em destaque: a URL do embed fica em js/main.js (CONFIG.YOUTUBE_VIDEO_URL) -->
+        <div class="video-slot reveal" id="video-slot" aria-label="Vídeo em destaque"></div>
+
+        <blockquote class="section-quote reveal">“Quem mete a colher compartilha conhecimento, inspira diálogo e fortalece a participação.”</blockquote>
+
+        <div class="section-ctas reveal">
+          <!-- ATUALIZAR: "Acessar todos os conteúdos" aponta para a página interna Infos (Overlay Page) -->
+          <a class="btn btn-primary" href="#">Acessar todos os conteúdos</a>
+          <a class="btn js-youtube" href="#" title="Canal no YouTube (em breve)">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+            Canal no YouTube
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PARTICIPE
+    ============================================================ -->
+    <section class="section section-participe" id="participe" aria-labelledby="participe-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Sua participação</p>
+          <h2 class="section-title" id="participe-title">Participe</h2>
+          <p class="section-lede">Transformar Minas é um trabalho coletivo. Meta a colher, compartilhe suas ideias, apresente demandas, participe das escutatórias e ajude a construir soluções para quem vive em Minas Gerais.</p>
+        </header>
+
+        <div class="participe-grid">
+          <div class="participe-ways">
+            <article class="card participe-card reveal">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M14 8a5 5 0 0 1 0 8"/><path d="M17 5a9 9 0 0 1 0 14"/></svg></span>
+              <h3 class="card-title">Compartilhe sua ideia</h3>
+              <p class="card-text">Envie sugestões para o Plano Participativo Minas que Cuida.</p>
+            </article>
+            <article class="card participe-card reveal">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><path d="M19 8v6"/><path d="M16 11h6"/></svg></span>
+              <h3 class="card-title">Cadastre-se para participar</h3>
+              <p class="card-text">Faça parte da rede de pessoas que acompanham e contribuem com o projeto.</p>
+            </article>
+            <article class="card participe-card reveal">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H4l2.5-3A8 8 0 1 1 21 12z"/><path d="M9 10h6"/><path d="M9 13h4"/></svg></span>
+              <h3 class="card-title">Participe das Escutatórias</h3>
+              <p class="card-text">Acompanhe encontros, rodas de conversa e espaços de participação popular.</p>
+            </article>
+            <article class="card participe-card reveal">
+              <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.2 1.1 2.2h5c0-1 .3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg></span>
+              <h3 class="card-title">Ajude a construir soluções</h3>
+              <p class="card-text">Sua experiência e sua realidade ajudam a transformar demandas em políticas públicas.</p>
+            </article>
+          </div>
+
+          <div class="participe-side">
+            <figure class="participe-media reveal">
+              <img class="participe-photo" src="imagens/participe2.jpg" alt="Pessoas em roda de conversa e escutatória" loading="lazy" decoding="async">
+            </figure>
+
+            <div class="form-slot reveal" id="form-slot" aria-label="Formulário de participação Método Kóller"></div>
+          </div>
+        </div>
+
+        <blockquote class="section-quote reveal">“Meta a colher e participe da construção de uma Minas que Cuida.”</blockquote>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         REDES SOCIAIS
+    ============================================================ -->
+    <section class="section section-redes" id="redes-sociais" aria-labelledby="redes-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="section-eyebrow">Acompanhe de perto</p>
+          <h2 class="section-title" id="redes-title">Redes Sociais</h2>
+          <p class="section-lede">Acompanhe Cláudia Guerra nas redes sociais e fique por dentro das ações, notícias, agenda, vídeos, campanhas e conteúdos produzidos diariamente.</p>
+          <p class="section-quote quote-inline reveal">Quem mete a colher também participa pelas redes.</p>
+        </header>
+
+        <div class="social-band reveal">
+          <a class="social-btn social-instagram" href="https://www.instagram.com/claudiaguerraudi" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.4" cy="6.6" r="1.4" fill="currentColor" stroke="none"/></svg>
+            <span class="social-name">Instagram</span>
+            <span class="social-handle">@claudiaguerraudi</span>
+          </a>
+
+          <a class="social-btn social-facebook" href="https://www.facebook.com/claudiaguerraudi" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8V11H8v3h2.5v7h3z"/></svg>
+            <span class="social-name">Facebook</span>
+            <span class="social-handle">@claudiaguerraudi</span>
+          </a>
+
+          <!-- ATUALIZAR: URL do canal no YouTube fica em js/main.js (CONFIG.YOUTUBE_CHANNEL_URL) -->
+          <a class="social-btn social-youtube js-youtube" href="#" title="Canal no YouTube (em breve)">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15.5v-7l6 3.5-6 3.5z"/></svg>
+            <span class="social-name">YouTube</span>
+            <span class="social-handle">Canal oficial</span>
+          </a>
+
+          <a class="social-btn social-x" href="https://x.com/claudiaguerramg" target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.7 3H21l-7.3 8.4L22.2 21h-6.7l-5.2-6.3L4.3 21H1l7.8-9L1.6 3h6.9l4.7 5.8L17.7 3zm-1.2 16.1h1.9L7.2 4.8H5.2l11.3 14.3z"/></svg>
+            <span class="social-name">X (Twitter)</span>
+            <span class="social-handle">@claudiaguerramg</span>
+          </a>
+
+          <a class="social-btn social-whatsapp" href="https://wa.me/553484282416?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar." target="_blank" rel="noopener">
+            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="social-name">WhatsApp</span>
+            <span class="social-handle">+55 34 8428-2416</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       RODAPÉ
+  ============================================================ -->
+  <footer class="site-footer" id="rodape">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-row">
+            <img class="footer-logo" src="imagens/logo_shadow.png" alt="Logo Portal Cláudia Guerra" loading="lazy" width="1024" height="779">
+            <!-- Wordmark do rodapé, mesmo padrão do header -->
+            <span class="brand-text" aria-hidden="true">
+              <span class="brand-kicker">Portal</span>
+              <span class="brand-name">
+                <span class="brand-line">Cláudia</span>
+                <span class="brand-line">Guerra</span>
+              </span>
+            </span>
+          </div>
+          <p class="footer-phrase">Quem mete a colher não assiste aos problemas de longe.</p>
+          <p class="footer-text">Uma plataforma permanente de trajetória, escuta, participação e ação política para a construção de uma Minas que Cuida.</p>
+        </div>
+
+        <nav class="footer-col" aria-label="Navegação rápida">
+          <h3 class="footer-title">Navegação</h3>
+          <ul class="footer-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#quem-sou">Quem Sou</a></li>
+            <li><a href="#acoes">Ações</a></li>
+            <li><a href="#minas-que-cuida">Minas que Cuida</a></li>
+            <li><a href="#infos">Infos</a></li>
+            <li><a href="#participe">Participe</a></li>
+          </ul>
+        </nav>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Contato</h3>
+          <ul class="footer-links">
+            <li><a href="https://wa.me/553484282416" target="_blank" rel="noopener">WhatsApp · +55 34 8428-2416</a></li>
+            <!-- ATUALIZAR: conferir e-mail oficial (spec lista "glaudiaguerraudi@gmail.com", possível erro de digitação) -->
+            <li><a href="mailto:claudiaguerraudi@gmail.com">claudiaguerraudi@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3 class="footer-title">Redes Sociais</h3>
+          <ul class="footer-links">
+            <li><a href="https://www.instagram.com/claudiaguerraudi" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/claudiaguerraudi" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a class="js-youtube" href="#" title="Canal no YouTube (em breve)">YouTube</a></li>
+            <li><a href="https://x.com/claudiaguerramg" target="_blank" rel="noopener">X (Twitter)</a></li>
+            <li><a href="https://wa.me/553484282416" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Portal Cláudia Guerra. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+  </button>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Número copiado!</div>
+
+  <!-- Faixa obrigatória de propaganda eleitoral — fixa na base da tela.
+       Espelha a barra de menu (position: fixed, z-index e troca de cor ao
+       rolar), invertida para a posição inferior. -->
+  <div class="faixa-propaganda" id="faixa-propaganda">
+    <span class="faixa-propaganda-texto">PROPAGANDA ELEITORAL - REDE SUSTENTABILIDADE - CNPJ 68.438.243/0001-40</span>
+  </div>
+
+  <script src="js/main.js"></script>
+  <!-- Overlays da seção Quem Sou -->
+  <script src="js/qs-overlays.js"></script>
+  <!-- Narrativa "Na narrativa de outras bocas" -->
+  <script src="js/qs-narrativa.js"></script>
+  <!-- Cards da seção Ações (tags expansíveis) -->
+  <script src="js/acoes-cards.js"></script>
+  <!-- Overlays dos cards da seção Ações -->
+  <script src="js/acoes-overlays.js"></script>
+  <!-- Depoimentos de Empatia (vídeos direto na página) -->
+  <script src="js/depoimentos.js"></script>
+</body>
+</html>

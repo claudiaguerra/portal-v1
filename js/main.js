@@ -1,0 +1,444 @@
+/* ============================================================
+   Portal Cláudia Guerra — V1
+   JavaScript frontend (sem dependências externas)
+   ============================================================ */
+(function () {
+  "use strict";
+
+  /* ------------------------------------------------------------
+     CONFIG — ATUALIZAR AQUI os conteúdos ainda não definidos.
+     Toda URL que contiver "SEU_" é tratada como placeholder e o
+     portal exibe um cartão "em breve" no lugar do embed.
+     ------------------------------------------------------------ */
+  var CONFIG = {
+    // Formulário oficial Método Kóller (Google Forms) — embed URL:
+    METODO_KOLLER_FORM_URL: "https://forms.gle/SEU_FORMULARIO_METODO_KOLLER_AQUI",
+
+    // Vídeo em destaque da seção Infos (embed do YouTube):
+    YOUTUBE_VIDEO_URL: "https://www.youtube.com/embed/SEU_VIDEO_DESTAQUE_AQUI",
+
+    // Canal oficial no YouTube:
+    YOUTUBE_CHANNEL_URL: "https://www.youtube.com/SEU_CANAL_AQUI",
+
+    PLACEHOLDER_HINT: "SEU_"
+  };
+
+  function isPlaceholder(url) {
+    return !url || url.indexOf(CONFIG.PLACEHOLDER_HINT) !== -1;
+  }
+
+  var prefersReducedMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ============================================================
+     1. HEADER — estado ao rolar
+     ============================================================ */
+  var header = document.getElementById("site-header");
+  var toTop = document.getElementById("to-top");
+
+  function onScroll() {
+    var y = window.scrollY || window.pageYOffset;
+    if (header) {
+      header.classList.toggle("is-scrolled", y > 10);
+    }
+    if (toTop) {
+      toTop.classList.toggle("is-visible", y > 600);
+    }
+  }
+
+  if (toTop) {
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ============================================================
+     2. NAVEGAÇÃO MOBILE
+     ============================================================ */
+  var navToggle = document.getElementById("nav-toggle");
+  var siteNav = document.getElementById("site-nav");
+
+  function closeNav() {
+    if (!siteNav || !navToggle) return;
+    siteNav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+    navToggle.setAttribute("aria-label", "Abrir menu de navegação");
+  }
+
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", function () {
+      var open = siteNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Fechar menu de navegação" : "Abrir menu de navegação");
+    });
+
+    // Fecha ao clicar em um link do menu
+    siteNav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) closeNav();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeNav();
+    });
+
+    window.addEventListener("resize", function () {
+      // Breakpoint do hambúrguer no CSS é 1100px (ver @media max-width: 1100px)
+      if (window.innerWidth > 1100) closeNav();
+    });
+  }
+
+  /* ============================================================
+     3. HERO — carrossel de 5 slides
+     ============================================================ */
+  var hero = document.getElementById("hero");
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".hero-slide"));
+  var dotsWrap = document.querySelector(".hero-dots");
+  var prevBtn = document.querySelector(".hero-arrow-prev");
+  var nextBtn = document.querySelector(".hero-arrow-next");
+  var current = 0;
+  var timer = null;
+  var DELAY = 5000;
+  var touchX = null;
+
+  if (slides.length > 1) {
+    // Cria os indicadores
+    slides.forEach(function (_, i) {
+      var dot = document.createElement("button");
+      dot.className = "hero-dot" + (i === 0 ? " is-active" : "");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Ir para o slide " + (i + 1) + " de " + slides.length);
+      dot.addEventListener("click", function () {
+        goTo(i);
+        resetTimer();
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    function updateDots() {
+      var dots = dotsWrap.children;
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].classList.toggle("is-active", i === current);
+      }
+    }
+
+    function goTo(index) {
+      slides[current].classList.remove("is-active");
+      slides[current].setAttribute("aria-hidden", "true");
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add("is-active");
+      slides[current].removeAttribute("aria-hidden");
+      updateDots();
+    }
+
+    function next() {
+      goTo(current + 1);
+    }
+
+    function prev() {
+      goTo(current - 1);
+    }
+
+    function startTimer() {
+      stopTimer();
+      if (prefersReducedMotion) return; // sem autoplay para quem prefere menos movimento
+      timer = window.setInterval(next, DELAY);
+    }
+
+    function stopTimer() {
+      if (timer) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    function resetTimer() {
+      if (prefersReducedMotion) return;
+      startTimer();
+    }
+
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); resetTimer(); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); resetTimer(); });
+
+    // Pausa com hover/foco, retoma ao sair
+    hero.addEventListener("mouseenter", stopTimer);
+    hero.addEventListener("mouseleave", startTimer);
+    hero.addEventListener("focusin", stopTimer);
+    hero.addEventListener("focusout", startTimer);
+
+    // Gestos de toque
+    hero.addEventListener("touchstart", function (e) {
+      touchX = e.changedTouches[0].clientX;
+      stopTimer();
+    }, { passive: true });
+
+    hero.addEventListener("touchend", function (e) {
+      if (touchX === null) return;
+      var delta = e.changedTouches[0].clientX - touchX;
+      if (Math.abs(delta) > 50) {
+        if (delta < 0) next(); else prev();
+      }
+      touchX = null;
+      resetTimer();
+    }, { passive: true });
+
+    // Teclado: setas esquerda/direita quando o hero está em foco
+    hero.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { next(); resetTimer(); e.preventDefault(); }
+      if (e.key === "ArrowLeft") { prev(); resetTimer(); e.preventDefault(); }
+    });
+
+    // Não avança com a aba em segundo plano
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stopTimer(); else startTimer();
+    });
+
+    startTimer();
+  }
+
+  /* ============================================================
+     4. SCROLLSPY — destaca o item ativo no menu
+     ============================================================ */
+  var sections = Array.prototype.slice.call(document.querySelectorAll("main section[id]"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
+
+  function setActive(id) {
+    navLinks.forEach(function (link) {
+      link.classList.toggle("is-active", link.getAttribute("href") === "#" + id);
+    });
+  }
+
+  if ("IntersectionObserver" in window && sections.length) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach(function (s) { spy.observe(s); });
+
+    // No topo, o destaque volta para "Início"
+    window.addEventListener("scroll", function () {
+      if ((window.scrollY || 0) < 200) setActive("inicio");
+    }, { passive: true });
+  }
+
+  /* ============================================================
+     5. APARIÇÃO NO SCROLL (fade suave)
+     ============================================================ */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+
+  if ("IntersectionObserver" in window && revealEls.length) {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
+  }
+
+  /* ============================================================
+     6. INTEGRAÇÕES — formulário Método Kóller e vídeo em destaque
+     ============================================================ */
+  function renderFallback(container, title, text) {
+    var card = document.createElement("div");
+    card.className = "embed-fallback";
+
+    var h = document.createElement("p");
+    h.className = "embed-fallback-title";
+    h.textContent = title;
+
+    var p = document.createElement("p");
+    p.className = "embed-fallback-text";
+    p.textContent = text;
+
+    var actions = document.createElement("div");
+
+    // Botão real disponível: WhatsApp da equipe (ícone + cor oficial do app)
+    var wa = document.createElement("a");
+    wa.className = "btn btn-whatsapp";
+    wa.href = "https://wa.me/553484282416?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar.";
+    wa.target = "_blank";
+    wa.rel = "noopener";
+    wa.innerHTML = FORM_ICONS.whatsapp + "Falar com a equipe";
+
+    // Fallback "Copiar número" quando o click-to-chat (wa.me -> api.whatsapp.com) é bloqueado
+    // (ícone de telefone + amarelo da paleta oficial)
+    var copy = document.createElement("button");
+    copy.className = "btn btn-accent";
+    copy.type = "button";
+    copy.setAttribute("data-copy", "+55 34 8428-2416");
+    copy.innerHTML = FORM_ICONS.phone + "Copiar número";
+
+    var ig = document.createElement("a");
+    ig.className = "btn btn-instagram";
+    ig.href = "https://www.instagram.com/claudiaguerraudi";
+    ig.target = "_blank";
+    ig.rel = "noopener";
+    ig.innerHTML = FORM_ICONS.instagram + "Instagram";
+
+    actions.appendChild(wa);
+    actions.appendChild(copy);
+    actions.appendChild(ig);
+    card.appendChild(h);
+    card.appendChild(p);
+    card.appendChild(actions);
+    container.appendChild(card);
+  }
+
+  /* Ícones SVG dos canais de contato (fallback do formulário) */
+  var FORM_ICONS = {
+    whatsapp:
+      '<svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
+    phone:
+      '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>',
+    instagram:
+      '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>'
+  };
+
+  // Formulário Método Kóller — fallback: destaque apenas nos 3 canais de contato
+  function renderFormActions(container) {
+    var card = document.createElement("div");
+    card.className = "embed-fallback form-actions";
+
+    var row = document.createElement("div");
+    row.className = "form-actions-row";
+
+    var wa = document.createElement("a");
+    wa.className = "btn btn-whatsapp";
+    wa.href = "https://wa.me/553484282416?text=Ol%C3%A1!%20Acessei%20o%20Portal%20Cl%C3%A1udia%20Guerra%20e%20quero%20participar.";
+    wa.target = "_blank";
+    wa.rel = "noopener";
+    wa.innerHTML = FORM_ICONS.whatsapp + "Falar com a equipe";
+
+    var copy = document.createElement("button");
+    copy.className = "btn btn-primary";
+    copy.type = "button";
+    copy.setAttribute("data-copy", "+55 34 8428-2416");
+    copy.innerHTML = FORM_ICONS.phone + "Copiar número";
+
+    var ig = document.createElement("a");
+    ig.className = "btn btn-instagram";
+    ig.href = "https://www.instagram.com/claudiaguerraudi";
+    ig.target = "_blank";
+    ig.rel = "noopener";
+    ig.innerHTML = FORM_ICONS.instagram + "Instagram";
+
+    row.appendChild(wa);
+    row.appendChild(copy);
+    row.appendChild(ig);
+    card.appendChild(row);
+    container.appendChild(card);
+  }
+
+  // Formulário Método Kóller
+  var formSlot = document.getElementById("form-slot");
+  if (formSlot) {
+    if (isPlaceholder(CONFIG.METODO_KOLLER_FORM_URL)) {
+      renderFormActions(formSlot);
+    } else {
+      var iframe = document.createElement("iframe");
+      iframe.src = CONFIG.METODO_KOLLER_FORM_URL;
+      iframe.setAttribute("title", "Formulário de participação Método Kóller");
+      iframe.setAttribute("loading", "lazy");
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("allowfullscreen", "");
+      formSlot.appendChild(iframe);
+    }
+  }
+
+  // Vídeo em destaque
+  var videoSlot = document.getElementById("video-slot");
+  if (videoSlot) {
+    if (isPlaceholder(CONFIG.YOUTUBE_VIDEO_URL)) {
+      renderFallback(
+        videoSlot,
+        "Vídeos em breve",
+        "Conteúdos em vídeo serão publicados em destaque aqui. Acompanhe o canal no YouTube e o Instagram para novidades."
+      );
+    } else {
+      var viframe = document.createElement("iframe");
+      viframe.src = CONFIG.YOUTUBE_VIDEO_URL;
+      viframe.setAttribute("title", "Vídeo em destaque — YouTube");
+      viframe.setAttribute("loading", "lazy");
+      viframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+      viframe.setAttribute("allowfullscreen", "");
+      videoSlot.appendChild(viframe);
+    }
+  }
+
+  // Botões do YouTube: aplica a URL do canal quando configurada
+  var youtubeLinks = Array.prototype.slice.call(document.querySelectorAll(".js-youtube"));
+  youtubeLinks.forEach(function (link) {
+    if (!isPlaceholder(CONFIG.YOUTUBE_CHANNEL_URL)) {
+      link.href = CONFIG.YOUTUBE_CHANNEL_URL;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.removeAttribute("title");
+    }
+  });
+
+  /* ------------------------------------------------------------
+     Copiar número do WhatsApp — fallback quando o click-to-chat
+     (wa.me -> api.whatsapp.com) é bloqueado pelo navegador/rede.
+     Qualquer elemento com [data-copy] copia o valor para a área
+     de transferência (delegação de eventos cobre botões dinâmicos).
+     ------------------------------------------------------------ */
+  function copyToClipboard(text, done) {
+    function legacyCopy() {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "0";
+      ta.style.left = "0";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+      document.body.removeChild(ta);
+      if (ok) { done(); }
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(done, legacyCopy);
+    } else {
+      legacyCopy();
+    }
+  }
+
+  /* message opcional: textos específicos por tipo de cópia
+     (ex.: botão de telefone usa "Telefone copiado para a Área de Transferência!").
+     Sem mensagem, mantém o padrão "Número copiado!". */
+  function showCopyToast(message) {
+    var toast = document.getElementById("copy-toast");
+    if (!toast) return;
+    toast.textContent = message || "Número copiado!";
+    toast.classList.add("is-visible");
+    clearTimeout(showCopyToast._t);
+    showCopyToast._t = setTimeout(function () {
+      toast.classList.remove("is-visible");
+    }, 2200);
+  }
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest("[data-copy]") : null;
+    if (!btn) return;
+    var text = btn.getAttribute("data-copy") || "";
+    if (!text) return;
+    var message = btn.getAttribute("data-copy-message") || "";
+    copyToClipboard(text, function () {
+      showCopyToast(message);
+    });
+  });
+})();
