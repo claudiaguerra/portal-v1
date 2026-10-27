@@ -1,0 +1,10 @@
+# Lixos de teste/ambiente — nunca commitar
+node_modules/
+artifacts/
+.portal-v1-ref/
+pacote-hospedagem/
+pacote-hospedagem.zip
+
+# Sistema
+.DS_Store
+Thumbs.db
