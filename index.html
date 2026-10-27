@@ -38,11 +38,6 @@
   <link rel="stylesheet" href="css/acoes-cards.css">
   <!-- Overlays dos cards da seção Ações (escopado, prefixo acoes-) -->
   <link rel="stylesheet" href="css/acoes-overlays.css">
-  <link rel="stylesheet" href="css/faixa-propaganda.css
-  src="js/faixa-propaganda.js"">
-  <script src="js/main.js"></script>
-  <script src="js/js/main.js"></script>
-  <script src="js/faixa-propaganda.js"></script>
 </head>
 <body>
 
@@ -65,14 +60,6 @@
         </span>
       </a>
 
-      <a class="eleicoes-logo-link" href="#eleicoes-2026" aria-label="Eleições 2026 — minha proposta de campanha">
-        <!-- Arte oficial E26FE.png usada INTEGRALMENTE (sem releitura). O selo
-             navy fixo garante o contraste do conteúdo (texto branco/amarelo)
-             tanto no header roxo do topo quanto no header branco após o
-             scroll, e transborda da barra como adesivo. Tamanho fixo no <img>
-             impede renderização no tamanho natural mesmo com CSS em cache. -->
-        <img class="eleicoes-logo" src="imagens/logo/E26FE.png" alt="Eleições 2026 — Vote na democracia" width="850" height="567" style="width: 100%; height: 100%; object-fit: contain;">
-      </a>
 
       <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
         <ul class="nav-list">
@@ -441,54 +428,6 @@
     </section>
 
     <!-- ============================================================
-         ELEIÇÕES 2026
-    ============================================================ -->
-    <section class="section section-eleicoes" id="eleicoes-2026" aria-labelledby="eleicoes-title">
-      <div class="container">
-        <header class="section-head reveal">
-          <p class="section-eyebrow">Minha proposta de campanha</p>
-          <h2 class="section-title" id="eleicoes-title">Eleições 2026</h2>
-        </header>
-      </div>
-
-      <!-- Banda expandida de ponta a ponta: imagem | painel roxo | imagem -->
-      <div class="eleicoes-grid reveal">
-        <figure class="eleicoes-media eleicoes-media-cg">
-          <img src="imagens/qs/CG.jpg" alt="Cláudia Guerra — candidata a Deputada Estadual de Minas Gerais nas Eleições 2026" loading="lazy" decoding="async">
-        </figure>
-
-        <div class="eleicoes-panel">
-          <h3 class="eleicoes-title-text">Chegou a hora de Minas Gerais cuidar de quem mais precisa!</h3>
-          <p class="eleicoes-text">Com Cláudia Guerra, professora, historiadora e defensora das mulheres, vamos construir um estado mais justo e inclusivo.</p>
-
-          <p class="eleicoes-vote">
-            <span class="eleicoes-vote-star" aria-hidden="true">✦</span>
-            <span class="eleicoes-vote-label">Vote</span>
-            <span class="eleicoes-vote-number">18000</span>
-          </p>
-
-          <p class="eleicoes-slogan">
-            <span>É A NOSSA VEZ,</span>
-            <span class="eleicoes-slogan-minas">MINAS!</span>
-          </p>
-        </div>
-
-        <figure class="eleicoes-media eleicoes-media-rede">
-          <img src="imagens/logo/logo-rede-principal-cor-vertical-300dpi.png" alt="Logo Rede Sustentabilidade" loading="lazy" decoding="async">
-        </figure>
-      </div>
-
-      <!-- Bloco "A base da minha candidatura" — abaixo da banda, mesma seção -->
-      <div class="container">
-        <div class="eleicoes-plataforma reveal">
-          <h3 class="eleicoes-plataforma-title">A base da minha candidatura</h3>
-          <p class="eleicoes-plataforma-lead">Quem me conhece sabe: eu não assisto aos problemas de longe, eu meto a colher! Como professora, historiadora e ativista, quero levar para a Assembleia Legislativa a força de um mandato coletivo, transparente e focado em cuidar de quem mais precisa.</p>
-          <p class="eleicoes-plataforma-text">Foram 63 propostas divididas em 11 eixos temáticos iniciais que serviram de alicerce para a construção coletiva do Plano Participativo "Minas que Cuida". Elaborado em julho de 2026, ele servirá como ponto de partida para que eu, Cláudia Guerra, como Deputada Estadual por Minas Gerais, construa de forma coletiva e por meio de escutas ativas as minhas cartas-compromisso finais com a população mineira. Meus valores centrais defendem um Estado eficiente, transparente e presente onde as pessoas mais precisam, guiado por justiça social, honestidade, empatia e aplicação responsável dos recursos públicos.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
          MINAS QUE CUIDA
     ============================================================ -->
     <section class="section section-minas" id="minas-que-cuida" aria-labelledby="minas-title">
@@ -835,13 +774,6 @@
   </button>
 
   <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">Número copiado!</div>
-
-  <!-- Faixa obrigatória de propaganda eleitoral — fixa na base da tela.
-       Espelha a barra de menu (position: fixed, z-index e troca de cor ao
-       rolar), invertida para a posição inferior. -->
-  <div class="faixa-propaganda" id="faixa-propaganda">
-    <span class="faixa-propaganda-texto">PROPAGANDA ELEITORAL - REDE SUSTENTABILIDADE - CNPJ 68.438.243/0001-40</span>
-  </div>
 
   <script src="js/main.js"></script>
   <!-- Overlays da seção Quem Sou -->

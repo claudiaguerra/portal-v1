@@ -8,8 +8,15 @@
 
 /* ---------- Grid: 2 colunas fixas (obrigatório) ---------- */
 #acoes .cards-grid {
-  grid-template-columns: repeat(2, 1fr);
+  /* minmax(0, 1fr) permite as tracks encolherem além do min-content no
+     mobile — sem isso as duas colunas (≈379px) estouravam a área de 342px
+     e criavam rolagem horizontal de ~13px. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
+}
+
+#acoes .card {
+  min-width: 0;
 }
 
 /* ---------- Estado de repouso: tag compacta ---------- */
@@ -27,6 +34,10 @@
   display: flex;
   align-items: center;
   gap: var(--sp-2);
+  /* no mobile a coluna fica estreita: se título + ícone não couberem numa
+     linha, o título desce para a linha seguinte em vez de estourar o card */
+  flex-wrap: wrap;
+  min-width: 0;
 }
 
 #acoes .card-icon {
@@ -42,6 +53,7 @@
 }
 
 #acoes .card-title {
+  min-width: 0;
   margin-bottom: 0;
   font-size: var(--fs-base);
   line-height: 1.35;
